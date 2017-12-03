@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">Tibetan Buddhist Prayer</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="engtabtitle">English</string>
+    <string name="tibtabtitle">Tibetan</string>
+    <string name="engIndex">Index</string>
+    <string name="text_with_paragraphs">
+        Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
+        Adding a 2nd line like this should work.
+        It should not cause parsing errors.
+    </string>
+    <string name="contacttext">Contact us</string>
+    <string name="abouttxt">About</string>
+    <string name="moreappstxt">More Apps</string>
+    <string name="fontsizetext">Adjust Font Size</string>
+    <string name="aboutus">About Us</string>
+    <string name="otherappContent">Other Apps</string>
+    <string name="contactemail">kotlab@gmail.com</string>
+    <string name="aboutustxt">Kotlab is a survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the</string>
+
+</resources>
