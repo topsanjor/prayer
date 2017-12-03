@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kotlab.tibetanbuddhistprayer.R;
@@ -30,7 +31,9 @@ public class MainActivity extends AppCompatActivity
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
-   private Toolbar toolbar;
+    private Toolbar toolbar;
+    private TextView topsanjor;
+    //here is nothing to do....
 
 
     @Override
@@ -135,7 +138,6 @@ public class MainActivity extends AppCompatActivity
             startActivity(sendIntent);
 
         }
-
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
