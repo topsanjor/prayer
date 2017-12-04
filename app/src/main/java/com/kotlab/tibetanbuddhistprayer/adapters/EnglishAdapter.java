@@ -36,15 +36,17 @@ public class EnglishAdapter extends RecyclerView.Adapter<EngViewHolder> {
     }
 
     @Override
-    public void onBindViewHolder(EngViewHolder holder, int position) {
+    public void onBindViewHolder(final EngViewHolder holder, int position) {
 
-        EnglishData enData = englishData.get(position);
+        final EnglishData enData = englishData.get(position);
         holder.entvtitle.setText(enData.getTitle());
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                
-                context.startActivity(new Intent(context,enPrayerDetailActivity.class));
+
+                Intent intent  = new Intent(context,enPrayerDetailActivity.class);
+                intent.putExtra("data",enData);
+                context.startActivity(intent);
             }
         });
 
