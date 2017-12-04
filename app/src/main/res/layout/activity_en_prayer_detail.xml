@@ -32,7 +32,7 @@
         android:textSize="20dp"
         android:gravity="center"
         android:text="Refugee"
-        android:id="@+id/enTitletxt"
+        android:id="@+id/entxttitle"
         android:textAllCaps="true"
         android:layout_marginBottom="20dp"
         android:layout_width="match_parent"
@@ -41,7 +41,7 @@
 
     <TextView
         android:text="@string/text_with_paragraphs"
-        android:id="@+id/engtxtBody"
+        android:id="@+id/entxtbody"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
