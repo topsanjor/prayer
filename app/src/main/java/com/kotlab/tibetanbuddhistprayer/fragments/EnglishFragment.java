@@ -6,15 +6,24 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.adapters.EnglishAdapter;
+import com.kotlab.tibetanbuddhistprayer.helper.Constansts;
 import com.kotlab.tibetanbuddhistprayer.model.EnglishData;
+import com.sun.xml.internal.bind.v2.runtime.reflect.opt.Const;
 
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+
+import java.net.Inet4Address;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EnglishFragment extends Fragment {
     private RecyclerView recycler;
@@ -31,9 +40,37 @@ public class EnglishFragment extends Fragment {
         // Inflate the layout for this fragment
         context = getContext();
         init(view);
-        addFakeData();
+//        addFakeData();
+
+        parseXMLData();
         return view;
 
+    }
+
+    private void parseXMLData() {
+
+        XmlParser xmlParser = new XmlParser();
+        Document  document = xmlParser.getDomElement(String.valueOf(R.xml.enprayer));
+
+        NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
+
+        for(int i=0;i<nodeList.getLength();i++){
+
+            //HashMap<String,String> map = new HashMap<String, String>();
+            Element el = (Element) nodeList.item(i);
+            String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
+            String body = xmlParser.getValue(el,Constansts.KEY_BODY);
+            String idstring = xmlParser.getValue(el,Constansts.KEY_ID) ;
+            int id = Integer.parseInt(idstring);
+
+            EnglishData englishData = new EnglishData(title,body,id);
+            englishDatas.add(englishData);
+            enAdapter.notifyDataSetChanged();
+
+
+
+
+        }
     }
 
     private void addFakeData() {

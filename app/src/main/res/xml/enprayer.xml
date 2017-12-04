@@ -1,27 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<enprayers>
-   <prayer id="1">
+<prayers>
+   <prayer>
+       <id>1</id>
        <title>Refugee</title>
        <body>The whole content of Refugee Prayer</body>
    </prayer>
-    <prayer id="2">
+    <prayer>
+        <id>2</id>
         <title>21 Tara </title>
         <body>The whole content of 21 Tara Prayer</body>
-    </prayer><prayer id="3">
+    </prayer>
+
+    <prayer>
+        <id>3</id>
     <title>Long Life Prayer </title>
     <body>The whole content of Long Life Prayer Refugee Prayer</body>
 </prayer>
-    <prayer id="4">
+    <prayer>
+        <id>4</id>
         <title>Refugee one</title>
         <body>The whole content of Refugee Prayer</body>
     </prayer>
-    <prayer id="5">
+    <prayer>
+        <id>5</id>
         <title>Refugee two</title>
         <body>The whole content of Refugee Prayer</body>
     </prayer>
-    <prayer id="6">
+    <prayer>
+        <id>6</id>
         <title>Refugee three</title>
         <body>The whole content of Refugee Prayer</body>
     </prayer>
 
-</enprayers>
+</prayers>

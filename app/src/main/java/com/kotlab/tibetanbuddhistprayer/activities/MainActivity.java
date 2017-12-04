@@ -32,9 +32,6 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private Toolbar toolbar;
-    private TextView topsanjor;
-    //here is nothing to do....
-    // nothing is left here...
 
 
     @Override
