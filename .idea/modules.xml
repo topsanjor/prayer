@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/TibetanBuddhistPrayer.iml" filepath="$PROJECT_DIR$/TibetanBuddhistPrayer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/.idea/prayer.iml" filepath="$PROJECT_DIR$/.idea/prayer.iml" />
+      <module fileurl="file://C:\Users\topjor\AndroidStudioProjects\TibetanBuddhistPrayer\.idea\prayer.iml" filepath="C:\Users\topjor\AndroidStudioProjects\TibetanBuddhistPrayer\.idea\prayer.iml" />
     </modules>
   </component>
 </project>

@@ -6,9 +6,9 @@ package com.kotlab.tibetanbuddhistprayer.helper;
 
 public class Constansts {
 
-    public static final String KEY_ITEM ="prayer";
-    public static final String KEY_ID="id";
-    public static final String KEY_TITLE="title";
-    public static final String KEY_BODY="body";
+    public static final String KEY_ITEM ="item";
+    public static final String KEY_ID="cost";
+    public static final String KEY_TITLE="name";
+    public static final String KEY_BODY="description";
 
 }

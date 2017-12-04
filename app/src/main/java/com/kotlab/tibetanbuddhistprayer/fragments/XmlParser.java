@@ -10,6 +10,7 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.StringReader;
+import java.io.UnsupportedEncodingException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -29,7 +30,6 @@ public class XmlParser {
 
     }
 
-
     public Document getDomElement(String xml){
 
         Document doc = null;
@@ -38,7 +38,15 @@ public class XmlParser {
             DocumentBuilder db = dbf.newDocumentBuilder();
             InputSource is = new InputSource();
             is.setCharacterStream(new StringReader(xml));
+            doc =db.parse(is);
+
         } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+            return null;
+        } catch (SAXException e) {
+            e.printStackTrace();
+            return null;
+        } catch (IOException e) {
             e.printStackTrace();
             return null;
         }
@@ -67,6 +75,22 @@ public class XmlParser {
                     }
                 }
             }
+        }
+        return "";
+    }
+
+
+    // getNode function
+    private static String getNode(String sTag, Element eElement) {
+        //if sTag exists(not null) I get childNodes->nlList
+        if (eElement.getElementsByTagName(sTag).item(0)!=null){
+            NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
+            //check if child (nlList) contain something
+            if ((nlList.getLength() == 0))//if the content is null
+                return "";
+            //if child contains something extract the value of the first element
+            Node nValue = (Node) nlList.item(0);
+            return nValue.getNodeValue();
         }
         return "";
     }
