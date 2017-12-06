@@ -16,7 +16,7 @@
         Adding a 2nd line like this should work.
         It should not cause parsing errors.
     </string>
-    <string name="contacttext">Contact us</string>
+    <string name="contacttext">Write us </string>
     <string name="abouttxt">About</string>
     <string name="moreappstxt">More Apps</string>
     <string name="fontsizetext">Adjust Font Size</string>
@@ -25,5 +25,8 @@
     <string name="contactemail">kotlab@gmail.com</string>
     <string name="aboutustxt">Kotlab is a survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the</string>
     <string name="addcounttxt">Count</string>
+    <string name="ematat">\@</string>
+    <string name="contactustxt">Contact us</string>
+    <string name="otherapptxt">Other Apps</string>
 
 </resources>

@@ -2,17 +2,31 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="@dimen/activity_horizontal_margin">
-
-    <TextView
-        android:gravity="center"
-        android:id="@+id/otherapps"
+    android:layout_height="match_parent">
+    <android.support.design.widget.AppBarLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/otherappContent"
-        android:textAllCaps="true"/>
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/appbar"/>
+    </android.support.design.widget.AppBarLayout>
+
+    <LinearLayout
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:gravity="center"
+            android:id="@+id/otherapps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/otherappContent"
+            android:textAllCaps="true"/>
+
+    </LinearLayout>
+
 
 
 </LinearLayout>

@@ -1,25 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
 
-        android:title="fontsize"
-        android:id="@+id/seekbar"
-        android:visible="true"
-        android:actionLayout="@layout/font_size_layout"/>
     <item
         android:id="@+id/action_settings"
         android:title="@string/action_settings"
         app:showAsAction="never" />
-    <item
-        android:id="@+id/action_contact"
-        android:title="@string/contacttext"/>
-    <item
-        android:id="@+id/action_about"
-        android:title="@string/abouttxt"/>
-    <item
-        android:id="@+id/action_moreapps"
-        android:title="@string/moreappstxt"/>
-
 
 </menu>
