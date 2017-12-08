@@ -1,5 +1,6 @@
 package com.kotlab.tibetanbuddhistprayer.adapters;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
@@ -47,6 +48,10 @@ public class EnglishAdapter extends RecyclerView.Adapter<EngViewHolder> {
                 Intent intent  = new Intent(context,enPrayerDetailActivity.class);
                 intent.putExtra("data",enData);
                 context.startActivity(intent);
+
+
+
+
             }
         });
 

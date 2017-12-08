@@ -7,4 +7,5 @@
     <dimen name="fab_margin">16dp</dimen>
     <dimen name="englishtabfragmentdimen">16dp</dimen>
     <dimen name="headersize">18dp</dimen>
+    <dimen name="enbodytxtsize">16sp</dimen>
 </resources>

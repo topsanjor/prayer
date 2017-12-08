@@ -28,5 +28,7 @@
     <string name="ematat">at</string>
     <string name="contactustxt">Contact us</string>
     <string name="otherapptxt">Other Apps</string>
+    <string name="hometitle">Daily Prayer Book</string>
+    <string name="txtCounten">Count</string>
 
 </resources>

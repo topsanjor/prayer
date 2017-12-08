@@ -14,9 +14,9 @@
             android:id="@+id/toolbar"
             layout="@layout/appbar"/>
         <android.support.design.widget.TabLayout
-            style="@style/TabTheme"
             android:id="@+id/tabLayout"
             app:tabMode="fixed"
+            app:tabTextAppearance="@style/TabTheme"
             app:tabIndicatorColor="@color/colorWhite"
             app:tabIndicatorHeight="5dp"
             android:layout_width="match_parent"

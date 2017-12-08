@@ -92,6 +92,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.left_to_right,R.anim.right_to_left);
                 return true;
 
 

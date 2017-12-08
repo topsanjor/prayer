@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setupToolbar("Tibetan Daily Prayer Book");
+        setupToolbar(getResources().getString(R.string.hometitle));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -109,16 +109,20 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_contact) {
             startActivity(new Intent(this,ContactActivity.class));
+
+
             finish();
 
         }else if(id==R.id.nav_about){
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
+
             finish();
         }
         else if(id == R.id.nav_otherapps){
             Intent intent = new Intent(this,OtherApps.class);
             startActivity(intent);
+
             finish();
         }
         else if(id == R.id.nav_share){
@@ -130,31 +134,22 @@ public class MainActivity extends AppCompatActivity
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
-        }else if (id==R.id.seekbar){
+        }else if (id==R.id.nav_font){
 
-            SeekBar seekBar = findViewById(R.id.seekbar);
-            seekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
 
-                }
 
-                @Override
-                public void onStartTrackingTouch(SeekBar seekBar) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(SeekBar seekBar) {
-
-                    Toast.makeText(getApplicationContext(),"hello seekbar",Toast.LENGTH_LONG).show();
-                }
-            });
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
     }
 
     private void showMsg()
