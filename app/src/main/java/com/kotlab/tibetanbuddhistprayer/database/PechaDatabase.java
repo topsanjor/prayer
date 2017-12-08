@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.support.design.widget.TabLayout;
 import android.util.Log;
 
 /**
@@ -59,10 +60,35 @@ public class PechaDatabase extends SQLiteOpenHelper {
 
     }
     public Cursor getTotalReadCount(PechaDatabase db, int prayerid){
+       try{
 
-        SQLiteDatabase SQ = db.getReadableDatabase();
-        String getcountQuery ="SELECT" + TableData.PrayerTable.COUNT + "FROM" + TableData.PrayerTable.TABLE_NAME + "WHERE" + TableData.PrayerTable.PRAYER_ID +"='"+ prayerid +"'";
-        Cursor c = SQ.rawQuery(getcountQuery, null);
-        return c;
+           SQLiteDatabase SQ = db.getReadableDatabase();
+           String getcountQuery ="SELECT " + TableData.PrayerTable.COUNT + " FROM " + TableData.PrayerTable.TABLE_NAME + " WHERE " + TableData.PrayerTable.PRAYER_ID +"='"+ prayerid +"'";
+           Log.d("Result",getcountQuery);
+           Cursor c = SQ.rawQuery(getcountQuery, null);
+            Log.d("Cursor", String.valueOf(c));
+           return c;
+       }catch (Exception ex){
+           ex.fillInStackTrace();
+
+           Log.d("Result", String.valueOf(ex));
+           return null;
+       }
+    }
+
+    public long AddPrayerData(PechaDatabase db,int prayer_id,int count){
+
+        try {
+
+            SQLiteDatabase database = db.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(TableData.PrayerTable.PRAYER_ID,prayer_id);
+            cv.put(TableData.PrayerTable.COUNT,count);
+            long result = database.insertWithOnConflict(TableData.PrayerTable.TABLE_NAME,null,cv,SQLiteDatabase.CONFLICT_REPLACE);
+            return result;
+
+        }catch (Exception ex){
+            return -1;
+        }
     }
 }

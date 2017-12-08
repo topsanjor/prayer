@@ -53,8 +53,9 @@
     <TextView
 
         android:paddingLeft="5dp"
-        android:text="10"
-        android:id="@+id/counttxt"
+        android:text="0"
+        android:textColor="@color/colorPrimaryDark"
+        android:id="@+id/counttv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

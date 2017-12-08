@@ -22,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kotlab.tibetanbuddhistprayer.R;
+import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.fragments.EnglishFragment;
 import com.kotlab.tibetanbuddhistprayer.fragments.TibetanFragment;
 import com.kotlab.tibetanbuddhistprayer.pagerAdapter.ViewPagerAdapter;
@@ -32,6 +33,8 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private Toolbar toolbar;
+    private PechaDatabase pechaDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,8 +49,17 @@ public class MainActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         setupTabLayout();
+        createDB();
 
     }
+
+    private void createDB() {
+
+        pechaDatabase = new PechaDatabase(this);
+
+    }
+
+
     private void setupToolbar(String tooltitle) {
         setSupportActionBar(toolbar);
         getSupportActionBar().setHomeButtonEnabled(true);
@@ -58,13 +70,13 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setupTabLayout() {
-      tabLayout = (TabLayout) findViewById(R.id.tabLayout);
-      viewPager = (ViewPager) findViewById(R.id.viewPager);
-      viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-      viewPagerAdapter.addFragment(new EnglishFragment(),getResources().getString(R.string.engtabtitle));
-      viewPagerAdapter.addFragment(new TibetanFragment(),getResources().getString(R.string.tibtabtitle));
-      viewPager.setAdapter(viewPagerAdapter);
-      tabLayout.setupWithViewPager(viewPager);
+        tabLayout = (TabLayout) findViewById(R.id.tabLayout);
+        viewPager = (ViewPager) findViewById(R.id.viewPager);
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        viewPagerAdapter.addFragment(new EnglishFragment(), getResources().getString(R.string.engtabtitle));
+        viewPagerAdapter.addFragment(new TibetanFragment(), getResources().getString(R.string.tibtabtitle));
+        viewPager.setAdapter(viewPagerAdapter);
+        tabLayout.setupWithViewPager(viewPager);
 
     }
 
@@ -108,24 +120,22 @@ public class MainActivity extends AppCompatActivity
 
 
         if (id == R.id.nav_contact) {
-            startActivity(new Intent(this,ContactActivity.class));
+            startActivity(new Intent(this, ContactActivity.class));
 
 
             finish();
 
-        }else if(id==R.id.nav_about){
+        } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
 
             finish();
-        }
-        else if(id == R.id.nav_otherapps){
-            Intent intent = new Intent(this,OtherApps.class);
+        } else if (id == R.id.nav_otherapps) {
+            Intent intent = new Intent(this, OtherApps.class);
             startActivity(intent);
 
             finish();
-        }
-        else if(id == R.id.nav_share){
+        } else if (id == R.id.nav_share) {
 
             Intent sendIntent = new Intent();
             sendIntent.setAction(Intent.ACTION_SEND);
@@ -134,8 +144,7 @@ public class MainActivity extends AppCompatActivity
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
 
-        }else if (id==R.id.nav_font){
-
+        } else if (id == R.id.nav_font) {
 
 
         }
@@ -152,8 +161,4 @@ public class MainActivity extends AppCompatActivity
 
     }
 
-    private void showMsg()
-    {
-        Toast.makeText(this, "hekki", Toast.LENGTH_SHORT).show();
-    }
 }
