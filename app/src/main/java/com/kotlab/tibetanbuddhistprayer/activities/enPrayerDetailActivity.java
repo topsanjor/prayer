@@ -10,7 +10,10 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
@@ -19,20 +22,23 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     Toolbar toolbar;
     private static final String TAG = "PrayerDetails";
     private TextView txttitle, txtbody;
-    private TextView counttv;
-    private Button countbtn;
+    private TextView counttv,counttvsecond;
     private PechaDatabase pechaDatabase;
     private String title,body;
     private int prayer_id;
     private int prayer_count =0;
+    private LinearLayout minuslayout,pluslayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_en_prayer_detail);
-        toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         initView();
         setupToolBar("English Prayer");
+        getData();
+    }
+
+    private void getData() {
         try {
 
             EnglishData englishData = (EnglishData) getIntent().getSerializableExtra("data");
@@ -48,8 +54,6 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
             ex.fillInStackTrace();
         }
-
-
     }
 
     @Override
@@ -69,28 +73,56 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void initView() {
-
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         txttitle = (TextView) findViewById(R.id.entxttitle);
         txtbody = (TextView) findViewById(R.id.entxtbody);
-        countbtn = (Button) findViewById(R.id.countbtn);
-        counttv= findViewById(R.id.counttv);
-
-        countbtn.setOnClickListener(this);
+        counttv= (TextView) findViewById(R.id.counttv);
+        counttvsecond = (TextView) findViewById(R.id.counttvsecond);
+        minuslayout = (LinearLayout) findViewById(R.id.minuslayout);
+        pluslayout = (LinearLayout) findViewById(R.id.pluslayout);
+        minuslayout.setOnClickListener(this);
+        pluslayout.setOnClickListener(this);
+        pechaDatabase = new PechaDatabase(this);
 
     }
 
     @Override
     public void onClick(View v) {
-        if (v.getId() == R.id.countbtn) {
+        if (v.getId() == R.id.pluslayout) {
             IncreaseCountNumber();
+        }else if(v.getId()==R.id.minuslayout){
+
+            DecreaseCountNumber();
         }
+    }
+
+    private void DecreaseCountNumber() {
+
+        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
+        if(cursor.getCount()<0){
+
+            if(cursor.moveToNext()){
+                do {
+
+                    prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
+                    prayer_count--;
+                    pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,prayer_count);
+                }while (cursor.moveToFirst());
+            }
+            cursor.close();
+        }else {
+            Toast.makeText(this,"it is already at 0",Toast.LENGTH_LONG).show();
+        }
+
+        String count = String.valueOf(prayer_count);
+        counttv.setText(count);
+        counttvsecond.setText(count);
+
+
     }
 
     private void IncreaseCountNumber() {
 
-
-
-        pechaDatabase = new PechaDatabase(this);
         Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
         if(cursor.getCount()==0){
             prayer_count ++;
@@ -129,6 +161,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
         String count = String.valueOf(prayer_count);
         counttv.setText(count);
+        counttvsecond.setText(count);
 
 
 
@@ -179,6 +212,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
         String count = String.valueOf(prayer_count);
         counttv.setText(count);
+        counttvsecond.setText(count);
 
     }
 }

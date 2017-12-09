@@ -10,4 +10,5 @@
     <color name="colorsplashBg">#fdf611</color>
     <color name="colorbgheaderdetails">#cecdc7</color>
     <color name="colorViewLine">#95989A</color>
+    <color name="colorcountbg">#FFE600</color>
 </resources>

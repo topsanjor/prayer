@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:showIn="navigation_view">
         <item
-            android:id="@+id/nav_font"
-            android:icon="@drawable/ic_user"
+            android:id="@+id/nav_fontsize"
+            android:icon="@drawable/ic_fontsizeicon"
             android:title="@string/fontsizetext"/>
         <item
             android:id="@+id/nav_contact"
@@ -18,7 +18,7 @@
         <item
             android:id="@+id/nav_otherapps"
             android:icon="@drawable/ic_mobile_app"
-            android:title="other Apps" />
+            android:title="Other Apps" />
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/ic_menu_share"

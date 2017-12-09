@@ -3,61 +3,49 @@
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:padding="@dimen/headersize"
     android:layout_height="wrap_content">
-
-
     <TextView
-        android:textSize="@dimen/headersize"
         android:gravity="center"
-        android:text="@string/previewtxt"
+        android:text="Preview Text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:padding="20dp"
+        android:gravity="center"
+        android:text="Om Tari Tutari So ha"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
     <LinearLayout
-        android:gravity="center"
-        android:layout_marginBottom="@dimen/headersize"
-        android:layout_width="match_parent"
-        android:layout_height="150dp">
-
-        <TextView
-            android:id="@+id/previewtv"
-            android:layout_marginBottom="10dp"
-            android:padding="@dimen/headersize"
-            android:gravity="center"
-            android:text="@string/previewtxtcontent"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:gravity="center"
         android:layout_gravity="center"
+        android:gravity="center"
         android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <TextView
-            android:textSize="16dp"
+            android:textSize="16sp"
             android:text="A"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
         <com.warkiz.widget.IndicatorSeekBar
-            app:isb_min="10"
-            app:isb_max="30"
             android:id="@+id/seekbar"
+            app:isb_max="30"
+            app:isb_min="10"
+            app:isb_show_indicator="true"
+            app:isb_indicator_color="@color/colorPrimaryDark"
+            app:isb_track_background_bar_color="#d4d3d3"
+            app:isb_track_progress_bar_color="@color/colorPrimary"
+            app:isb_thumb_color="@color/colorPrimaryDark"
             android:layout_width="200dp"
             android:layout_height="wrap_content" />
+
         <TextView
-            android:textSize="25dp"
+            android:textSize="26dp"
             android:text="A"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-    
-
-
 </LinearLayout>

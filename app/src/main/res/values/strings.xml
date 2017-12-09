@@ -30,5 +30,7 @@
     <string name="otherapptxt">Other Apps</string>
     <string name="hometitle">Daily Prayer Book</string>
     <string name="txtCounten">Count</string>
+    <string name="previewtxt">Preview</string>
+    <string name="previewtxtcontent">Om ah hung</string>
 
 </resources>
