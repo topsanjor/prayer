@@ -51,8 +51,7 @@
             android:layout_height="wrap_content"
             app:isb_indicator_color="@color/colorPrimaryDark"
             app:isb_max="30"
-            app:isb_min="10"
-            app:isb_progress="25"
+            app:isb_min="12"
             app:isb_track_progress_bar_color="@color/colorPrimaryDark"
             app:isb_thumb_color="@color/colorPrimaryDark"
             app:isb_track_background_bar_color="@color/colorPrimary"
@@ -67,8 +66,8 @@
 
     <Button
         android:padding="10dp"
-        android:textColor="@color/colorWhite"
-        android:background="@color/colorPrimary"
+        android:textColor="@color/colorPrimaryDark"
+        android:background="@drawable/font_resetbg"
         android:layout_marginTop="@dimen/headersize"
         android:layout_gravity="center"
         android:text="@string/fontsizedonetxt"

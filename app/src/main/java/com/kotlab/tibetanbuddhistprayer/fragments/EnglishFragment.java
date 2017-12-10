@@ -25,7 +25,12 @@ import com.kotlab.tibetanbuddhistprayer.model.EnglishData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.File;
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.Inet4Address;
 import java.util.ArrayList;
@@ -82,9 +87,49 @@ public class EnglishFragment extends Fragment {
         context = getContext();
         init(view);
       //addFakeData();
-     parseXMLData();
+       parseXMLData();
+
+        parseData();
 
         return view;
+
+    }
+
+    private void parseData() {
+
+
+
+        try {
+
+            XmlParser xmlParser = new XmlParser();
+            InputStream is = getActivity().getAssets().open("enprayer.xml");
+            String xml = getActivity().getAssets().open("enprayer.xml").toString();
+
+            Log.d("isString",xml);
+            Document document = xmlParser.getDomElementa(is);
+
+            NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
+
+
+            for(int i=0;i<nodeList.getLength();i++){
+
+                Element el = (Element) nodeList.item(i);
+                String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
+                String body = xmlParser.getValue(el,Constansts.KEY_BODY);
+                String idstring = xmlParser.getValue(el,Constansts.KEY_ID) ;
+
+                int id = Integer.parseInt(idstring);
+
+
+
+
+            }
+
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
