@@ -15,6 +15,7 @@
                 layout="@layout/appbar"/>
         </android.support.design.widget.AppBarLayout>
         <ScrollView
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
@@ -47,6 +48,7 @@
                         android:layout_height="wrap_content">
 
                         <TextView
+                            android:textColor="@color/colorPrimaryDark"
                             android:textAllCaps="true"
                             android:text="@string/txtCounten"
                             android:layout_width="wrap_content"
@@ -66,7 +68,7 @@
                     <View
                         android:background="@color/colorViewLine"
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"></View>
+                        android:layout_height="1dp"></View>
 
                 </LinearLayout>
 
@@ -82,69 +84,12 @@
                     android:layout_marginTop="@dimen/headersize"
                     android:background="@color/colorViewLine"
                     android:layout_width="match_parent"
-                    android:layout_height="2dp"/>
+                    android:layout_height="1dp"/>
 
 
-                <LinearLayout
 
-                    android:background="@drawable/count_bg"
-                    android:gravity="center"
-                    android:weightSum="150"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:clickable="true"
-                        android:id="@+id/minuslayout"
-                        android:gravity="center"
-                        android:layout_weight="50"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textSize="@dimen/headersize"
-                            android:textColor="@color/colorWhite"
-                            android:text="-"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:padding="5dp"
-                        android:gravity="center"
-                        android:layout_weight="50"
-                        android:layout_width="0dp"
-                        android:orientation="vertical"
-                        android:layout_height="wrap_content">
-
-                        <TextView
-                            android:textAllCaps="true"
-                            android:textColor="@color/colorWhite"
-                            android:text="Count"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                        <TextView
-                            android:id="@+id/counttvsecond"
-                            android:textColor="@color/colorWhite"
-                            android:text="0"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                    <LinearLayout
-                        android:clickable="true"
-                        android:id="@+id/pluslayout"
-                        android:gravity="center"
-                        android:layout_weight="50"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:textColor="@color/colorWhite"
-                            android:text="+"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    </LinearLayout>
-                </LinearLayout>
+                <include
+                    layout="@layout/countbuttonlayout"/>
 
 
                 <View
@@ -154,8 +99,5 @@
             </LinearLayout>
 
         </ScrollView>
-
-
-
 
 </LinearLayout>

@@ -145,41 +145,6 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_fontsize) {
 
-            Dialog dialog = new Dialog(this);
-            dialog.setContentView(R.layout.font_size_layout);
-            dialog.setTitle("Change Font Size");
-            dialog.setCancelable(true);
-            dialog.setCanceledOnTouchOutside(true);
-            dialog.show();
-
-            IndicatorSeekBar seekBar = dialog.findViewById(R.id.seekbar);
-            final TextView previewtv = dialog.findViewById(R.id.previewtv);
-
-            seekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
-                @Override
-                public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
-
-                    previewtv.setTextSize(progress);
-
-                }
-
-                @Override
-                public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
-
-                }
-
-                @Override
-                public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
-
-                }
-
-                @Override
-                public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-
-                }
-            });
-
-
 
         }
 
@@ -188,40 +153,5 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-//
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        NavigationView navigationView = findViewById(R.id.nav_view);
-//        View view = navigationView.getHeaderView(0);
-//        IndicatorSeekBar seekBar = view.findViewById(R.id.seekbar);
-//        seekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
-//            @Override
-//            public void onProgressChanged(IndicatorSeekBar seekBar, int progress, float progressFloat, boolean fromUserTouch) {
-//                String pro = String.valueOf(progress);
-//
-//                Toast.makeText(MainActivity.this, "progress value"+pro, Toast.LENGTH_SHORT).show();
-//                Log.d("Seekbar", String.valueOf(progress));
-//            }
-//
-//            @Override
-//            public void onSectionChanged(IndicatorSeekBar seekBar, int thumbPosOnTick, String tickBelowText, boolean fromUserTouch) {
-//
-//
-//            }
-//
-//            @Override
-//            public void onStartTrackingTouch(IndicatorSeekBar seekBar, int thumbPosOnTick) {
-//
-//            }
-//
-//            @Override
-//            public void onStopTrackingTouch(IndicatorSeekBar seekBar) {
-//
-//            }
-//        });
-//
-//
-//    }
 
 }

@@ -32,5 +32,7 @@
     <string name="txtCounten">Count</string>
     <string name="previewtxt">Preview</string>
     <string name="previewtxtcontent">Om ah hung</string>
+    <string name="resettxt">Reset Count</string>
+    <string name="fontsizedonetxt">Reset Size</string>
 
 </resources>
