@@ -42,7 +42,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
         setContentView(R.layout.activity_en_prayer_detail);
 
         initView();
-        setupToolBar("English Prayer");
+        setupToolBar(getString(R.string.endetailtext));
         getData();
     }
 
@@ -57,7 +57,6 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
             txttitle.setText(title);
             txtbody.setText(body);
 
-            Log.d(TAG, "title =" + title + " and body =" + body);
         } catch (Exception ex) {
 
             ex.fillInStackTrace();

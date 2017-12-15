@@ -61,13 +61,10 @@ public class EnglishFragment extends Fragment {
 
 
     public String readXML() {
-
         String line;
         StringBuilder total = new StringBuilder();
-
         try {
             InputStream is = getActivity().getAssets().open("enprayer.xml");
-
             BufferedReader r = new BufferedReader(new InputStreamReader(is, "UTF-8"));
             total = new StringBuilder();
 
@@ -86,13 +83,8 @@ public class EnglishFragment extends Fragment {
 
         XmlParser xmlParser = new XmlParser();
         Document  document = xmlParser.getDomElement(readXML());
-
-        Log.d("TashiDoc",document.toString());
-
         try{
             NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
-
-            Log.d("TashiDelek",nodeList.toString());
             for(int i=0;i<nodeList.getLength();i++){
 
                 //HashMap<String,String> map = new HashMap<String, String>();
@@ -100,11 +92,7 @@ public class EnglishFragment extends Fragment {
                 String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
                 String body = xmlParser.getValue(el,Constansts.KEY_BODY);
                 String idstring = xmlParser.getValue(el,Constansts.KEY_ID) ;
-
                 int id = Integer.parseInt(idstring);
-
-                Log.d("Result",title+ "Body"+body);
-
                 EnglishData englishData = new EnglishData(title,body,id);
                 englishDatas.add(englishData);
                 enAdapter.notifyDataSetChanged();
@@ -116,7 +104,6 @@ public class EnglishFragment extends Fragment {
 
             ex.fillInStackTrace();
 
-            Log.d("Tashi",ex.getMessage());
 
         }
     }

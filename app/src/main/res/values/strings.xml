@@ -1,15 +1,11 @@
 <resources>
     <string name="app_name">Tibetan Buddhist Prayer</string>
-
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-
     <string name="action_settings">Settings</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="engtabtitle">English</string>
-    <string name="tibtabtitle">Tibetan</string>
+    <string name="tibtabtitle">བོད་ཡིག</string>
     <string name="engIndex">Index</string>
     <string name="text_with_paragraphs">
         Can this contain a lot of text? Can it contain \n a newline? Yes, it can.
@@ -28,7 +24,7 @@
     <string name="ematat">at</string>
     <string name="contactustxt">Contact us</string>
     <string name="otherapptxt">Other Apps</string>
-    <string name="hometitle">Daily Prayer Book</string>
+    <string name="hometitle">TIBETAN DIGITAL PECHA</string>
     <string name="txtCounten">Count</string>
     <string name="previewtxt">Preview</string>
     <string name="previewtxtcontent">Om ah hung</string>
@@ -38,6 +34,8 @@
     <string name="tibcounttxt">གྲངས་གསོག</string>
     <string name="txtCountentib">dfd</string>
     <string name="text_with_paragraphstib">གལ་ཏེ་འཕོ་བ་མ་ཐེབ་ན་ཐོས་གྲོལ་འདི་རོའི་རྩར་སྒྲ་དག་ལ་ཚིག་གསལ་བར་ཀློག་པར་བྱའོ། རོ་མེད་ན་ཚེ་འདས་ཀྱི་མལ་ས་འམ་འདུག་སར་བསྡད་ལ། བདེན་པའི་སྟོབས་བརྗོད་ལ་རྣམ་ཤེས་བཀུག་ནས། མདུན་དུ་ཉན་པར་དམིགས་ཤིང་ཀློག་པར་བྱའོ། འདེའི་དུས་ཉེ་དུ་དང་སེམས་ལ་བརྩེ་བའི་མཛའ་བོ་ཚོས་ངུ་སྐད་དང་། སྨྲེ་སྔགས་ཡེ་ནས་འདོན་དུ་མི་རུང་བས་དམ་བསྒྲགས་པའོ། རོ་ཡོད་ན་ཕྱི་དབུགས་ཆད་པའི་མཚམས་སུ་བླ་མའམ་མཆེད་གྲོགས་སམ། དད་པ་ཐོབ་པ། ཡིད་མཐུན་པའི་གྲོགས་མཆེད་ལ་སོགས་པས། རྣ་བར་མཆུ་མ་རེག་ཙམ་དུ་གཏད་ལ། ཐོས་གྲོལ་ཆེན་མོ་འདི་ཀློག་པར་བྱའོ། </string>
-    <string name="txtpecha">ཞལ་འདོན།</string>
+    <string name="txtpecha">ཉིན་རེའི་ཞལ་འདོན།</string>
+    <string name="tibtitletxtheader">༈ བར་དོ་ཐོས་གྲོལ་ཆེན་མོ་བཞུགས་སོ།</string>
+    <string name="endetailtext">Daily Prayer</string>
 
 </resources>

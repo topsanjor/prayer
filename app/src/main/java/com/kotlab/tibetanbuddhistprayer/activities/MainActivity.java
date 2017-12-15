@@ -3,6 +3,7 @@ package com.kotlab.tibetanbuddhistprayer.activities;
 import android.app.Dialog;
 import android.content.Intent;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
@@ -16,6 +17,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +41,8 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+
         setupToolbar(getResources().getString(R.string.hometitle));
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -76,7 +80,15 @@ public class MainActivity extends AppCompatActivity
         viewPagerAdapter.addFragment(new EnglishFragment(), getResources().getString(R.string.engtabtitle));
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
+        ViewGroup viewGroup = (ViewGroup) tabLayout.getChildAt(0);
+           ViewGroup vgtab = (ViewGroup) viewGroup.getChildAt(0);
 
+           View vgtabtxt= vgtab.getChildAt(1);
+           if(vgtabtxt instanceof TextView){
+
+               Typeface tfff =Typeface.createFromAsset(getAssets(),"fonts/nototibetanbold.ttf");
+               ((TextView) vgtabtxt).setTypeface(tfff);
+           }
     }
 
     @Override
@@ -122,18 +134,14 @@ public class MainActivity extends AppCompatActivity
             startActivity(new Intent(this, ContactActivity.class));
 
 
-            finish();
-
         } else if (id == R.id.nav_about) {
             Intent intent = new Intent(this, AboutActivity.class);
             startActivity(intent);
 
-            finish();
         } else if (id == R.id.nav_otherapps) {
             Intent intent = new Intent(this, OtherApps.class);
             startActivity(intent);
 
-            finish();
         } else if (id == R.id.nav_share) {
 
             Intent sendIntent = new Intent();
@@ -142,9 +150,6 @@ public class MainActivity extends AppCompatActivity
                     "Hey check out my app ");
             sendIntent.setType("text/plain");
             startActivity(sendIntent);
-
-        } else if (id == R.id.nav_fontsize) {
-
 
         }
 

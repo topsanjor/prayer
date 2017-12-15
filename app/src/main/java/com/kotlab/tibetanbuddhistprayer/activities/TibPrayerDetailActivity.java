@@ -75,6 +75,24 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setHomeButtonEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(app_name.toUpperCase());
+        settypeface(toolbar);
+
+    }
+
+    private void settypeface(Toolbar toolbar) {
+
+        for(int i = 0; i < toolbar.getChildCount(); i++){
+            View view = toolbar.getChildAt(i);
+            if(view instanceof TextView){
+                TextView tv = (TextView) view;
+                Typeface titleFont = Typeface.
+                        createFromAsset(getAssets(), "fonts/nototibetanregular.ttf");
+                if(tv.getText().equals(toolbar.getTitle())){
+                    tv.setTypeface(titleFont);
+                    break;
+                }
+            }
+        }
     }
 
     private void getData() {
