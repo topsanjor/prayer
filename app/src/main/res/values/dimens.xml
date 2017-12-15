@@ -10,4 +10,6 @@
     <dimen name="enbodytxtsize">16sp</dimen>
     <dimen name="countbgrad">10dp</dimen>
     <dimen name="headertwo">16dp</dimen>
+    <dimen name="tibbodytxtsize">20sp</dimen>
+    <dimen name="tibtibtletxtsize">20sp</dimen>
 </resources>

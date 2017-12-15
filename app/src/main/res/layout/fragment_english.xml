@@ -3,25 +3,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="10dp"
     tools:context="com.kotlab.tibetanbuddhistprayer.fragments.EnglishFragment">
 
-<TextView
-    android:textStyle="bold"
-    android:layout_marginTop="30dp"
-    android:layout_marginBottom="20dp"
-    android:textSize="20sp"
-    android:gravity="center"
-    android:textAllCaps="true"
-    android:id="@+id/engHeaderTxt"
-    android:text="@string/engIndex"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content" />
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recycler"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+            </android.support.v7.widget.RecyclerView>
 
-    </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

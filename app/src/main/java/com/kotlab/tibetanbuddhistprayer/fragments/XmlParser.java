@@ -55,32 +55,6 @@ public class XmlParser {
         return doc;
     }
 
-    // just ...
-
-
-    public Document getDomElementa(InputStream inputStream){
-
-        Document doc = null;
-        DocumentBuilderFactory dbf =DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            InputSource is = new InputSource(inputStream);
-
-            doc =db.parse(is);
-
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-            return null;
-        } catch (SAXException e) {
-            e.printStackTrace();
-            return null;
-        } catch (IOException e) {
-            e.printStackTrace();
-            return null;
-        }
-
-        return doc;
-    }
 
     public String getValue(Element item, String str){
 

@@ -29,9 +29,11 @@ import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.Inet4Address;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -43,41 +45,6 @@ public class EnglishFragment extends Fragment {
     private ArrayList<EnglishData> englishDatas= new ArrayList<>();
     private EnglishAdapter enAdapter;
 
-    String xml ="<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" +
-            "<menu>\n" +
-            "    <item>\n" +
-            "        <id>1</id>    \n" +
-            "        <name>Margherita</name>\n" +
-            "        <cost>155</cost>\n" +
-            "        <description>Single cheese topping Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of \"de Finibus Bonorum et Malorum\" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, \"Lorem ipsum dolor sit amet..\", comes from a line in section 1.10.32.</description>\n" +
-            "    </item> \n" +
-            "    <item>\n" +
-            "        <id>2</id>    \n" +
-            "        <name>Double Cheese Margherita</name>\n" +
-            "        <cost>225</cost>\n" +
-            "        <description>Loaded with Extra Cheese</description>\n" +
-            "    </item> \n" +
-            "    <item>\n" +
-            "        <id>3</id>    \n" +
-            "        <name>Fresh Veggie</name>\n" +
-            "        <cost>110</cost>\n" +
-            "        <description>Oninon and Crisp capsicum</description>\n" +
-            "    </item> \n" +
-            "    <item>\n" +
-            "        <id>4</id>    \n" +
-            "        <name>Peppy Paneer</name>\n" +
-            "        <cost>155</cost>\n" +
-            "        <description>Paneer, Crisp capsicum and Red pepper</description>\n" +
-            "    </item> \n" +
-            "    <item>\n" +
-            "        <id>5</id>    \n" +
-            "        <name>Mexican Green Wave</name>\n" +
-            "        <cost>445</cost>\n" +
-            "        <description>Onion, Crip capsicum, Tomato with mexican herb</description>\n" +
-            "    </item> \n" +
-            "</menu> ";
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,57 +53,39 @@ public class EnglishFragment extends Fragment {
         // Inflate the layout for this fragment
         context = getContext();
         init(view);
-      //addFakeData();
-       parseXMLData();
-
-        parseData();
-
+        parseXMLData();
         return view;
 
     }
 
-    private void parseData() {
 
 
+    public String readXML() {
+
+        String line;
+        StringBuilder total = new StringBuilder();
 
         try {
-
-            XmlParser xmlParser = new XmlParser();
             InputStream is = getActivity().getAssets().open("enprayer.xml");
-            String xml = getActivity().getAssets().open("enprayer.xml").toString();
 
-            Log.d("isString",xml);
-            Document document = xmlParser.getDomElementa(is);
+            BufferedReader r = new BufferedReader(new InputStreamReader(is, "UTF-8"));
+            total = new StringBuilder();
 
-            NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
-
-
-            for(int i=0;i<nodeList.getLength();i++){
-
-                Element el = (Element) nodeList.item(i);
-                String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
-                String body = xmlParser.getValue(el,Constansts.KEY_BODY);
-                String idstring = xmlParser.getValue(el,Constansts.KEY_ID) ;
-
-                int id = Integer.parseInt(idstring);
-
-
-
-
+            while ((line = r.readLine()) != null) {
+                total.append(line + "\n");
             }
-
-
 
         } catch (IOException e) {
             e.printStackTrace();
         }
 
+        return total.toString();
     }
 
     private void parseXMLData() {
 
         XmlParser xmlParser = new XmlParser();
-        Document  document = xmlParser.getDomElement(xml);
+        Document  document = xmlParser.getDomElement(readXML());
 
         Log.d("TashiDoc",document.toString());
 
@@ -172,14 +121,7 @@ public class EnglishFragment extends Fragment {
         }
     }
 
-    private void addFakeData() {
 
-        EnglishData en = new EnglishData("First","Hello this is a body",3);
-        englishDatas.add(en);
-        en = new EnglishData("Second","Second Body",2);
-        englishDatas.add(en);
-        enAdapter.notifyDataSetChanged();
-    }
 
     private void init(View view) {
 

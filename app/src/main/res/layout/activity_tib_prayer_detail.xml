@@ -1,9 +1,94 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.kotlab.tibetanbuddhistprayer.activities.TibPrayerDetailActivity">
+    android:orientation="vertical"
+    tools:context="com.kotlab.tibetanbuddhistprayer.activities.enPrayerDetailActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/appbar"/>
+    </android.support.design.widget.AppBarLayout>
+    <ScrollView
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textStyle="bold"
+                    android:layout_marginBottom="10dp"
+                    android:textSize="@dimen/tibtibtletxtsize"
+                    android:gravity="center"
+                    android:text="༈ བར་དོ་ཐོས་གྲོལ་ཆེན་མོ་བཞུགས་སོ།"
+                    android:id="@+id/tibtxttitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+
+                <LinearLayout
+                    android:gravity="right"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/countvtxttop"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:textAllCaps="true"
+                        android:text="@string/tibcounttxt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                    <TextView
+
+                        android:paddingLeft="5dp"
+                        android:text="0"
+                        android:textColor="@color/colorPrimaryDark"
+                        android:id="@+id/counttv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+
+                </LinearLayout>
+
+                <View
+                    android:background="@color/colorViewLine"
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"></View>
+
+            </LinearLayout>
+
+            <TextView
+                android:textSize="@dimen/tibbodytxtsize"
+                android:text="@string/text_with_paragraphstib"
+                android:id="@+id/tibtxtbody"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <View
+                android:background="@color/colorViewLine"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"/>
+
+            <include
+                layout="@layout/tibcountbtnlayout"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="40dp"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

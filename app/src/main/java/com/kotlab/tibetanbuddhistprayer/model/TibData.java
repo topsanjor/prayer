@@ -1,10 +1,12 @@
 package com.kotlab.tibetanbuddhistprayer.model;
 
+import java.io.Serializable;
+
 /**
  * Created by topjor on 11/28/2017.
  */
 
-public class TibData {
+public class TibData implements Serializable {
 
     private String tibtitle,tibbody;
     private int  tibId;
@@ -39,4 +41,6 @@ public class TibData {
     public void setTibId(int tibId) {
         this.tibId = tibId;
     }
+
+
 }

@@ -24,7 +24,7 @@ import com.warkiz.widget.IndicatorSeekBar;
 import org.w3c.dom.Text;
 
 public class enPrayerDetailActivity extends AppCompatActivity implements View.OnClickListener {
-    Toolbar toolbar;
+    private Toolbar toolbar;
     private static final String TAG = "PrayerDetails";
     private TextView txttitle, txtbody;
     private TextView counttv,counttvsecond;
@@ -96,6 +96,8 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
+
+
         if (v.getId() == R.id.layoutplus) {
             IncreaseCountNumber();
         }else if(v.getId()==R.id.layoutminus){
@@ -109,8 +111,6 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void DecreaseCountNumber() {
-
-
         Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
         Log.d("Total", String.valueOf(cursor.getCount()));
         if(cursor.getCount()>0){
@@ -124,21 +124,12 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
                         }else {
                             Toast.makeText(this,"it is already at 0",Toast.LENGTH_SHORT).show();
                         }
-
-
                     }while (cursor.moveToNext());
-
-
                 }
-
-
-                Log.d("DecreaseResult","PrayerC="+prayer_count+"PrayerId"+prayer_id);
-
                 pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,prayer_count);
             }catch (Exception ex){
                 ex.fillInStackTrace();
             }
-
 
         }else {
             Toast.makeText(this,"it is already at 0",Toast.LENGTH_LONG).show();
@@ -293,8 +284,6 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
             if (cursor.moveToFirst()) {
                 do {
                     prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
-                    Log.d("PrayerCount", String.valueOf(prayer_count));
-
 
 
                 }while (cursor.moveToNext());

@@ -34,5 +34,10 @@
     <string name="previewtxtcontent">Om ah hung</string>
     <string name="resettxt">Reset Count</string>
     <string name="fontsizedonetxt">Reset Size</string>
+    <string name="tibIndex">དཀར་ཆག</string>
+    <string name="tibcounttxt">གྲངས་གསོག</string>
+    <string name="txtCountentib">dfd</string>
+    <string name="text_with_paragraphstib">གལ་ཏེ་འཕོ་བ་མ་ཐེབ་ན་ཐོས་གྲོལ་འདི་རོའི་རྩར་སྒྲ་དག་ལ་ཚིག་གསལ་བར་ཀློག་པར་བྱའོ། རོ་མེད་ན་ཚེ་འདས་ཀྱི་མལ་ས་འམ་འདུག་སར་བསྡད་ལ། བདེན་པའི་སྟོབས་བརྗོད་ལ་རྣམ་ཤེས་བཀུག་ནས། མདུན་དུ་ཉན་པར་དམིགས་ཤིང་ཀློག་པར་བྱའོ། འདེའི་དུས་ཉེ་དུ་དང་སེམས་ལ་བརྩེ་བའི་མཛའ་བོ་ཚོས་ངུ་སྐད་དང་། སྨྲེ་སྔགས་ཡེ་ནས་འདོན་དུ་མི་རུང་བས་དམ་བསྒྲགས་པའོ། རོ་ཡོད་ན་ཕྱི་དབུགས་ཆད་པའི་མཚམས་སུ་བླ་མའམ་མཆེད་གྲོགས་སམ། དད་པ་ཐོབ་པ། ཡིད་མཐུན་པའི་གྲོགས་མཆེད་ལ་སོགས་པས། རྣ་བར་མཆུ་མ་རེག་ཙམ་དུ་གཏད་ལ། ཐོས་གྲོལ་ཆེན་མོ་འདི་ཀློག་པར་བྱའོ། </string>
+    <string name="txtpecha">ཞལ་འདོན།</string>
 
 </resources>

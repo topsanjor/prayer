@@ -72,8 +72,8 @@ public class MainActivity extends AppCompatActivity
         tabLayout = (TabLayout) findViewById(R.id.tabLayout);
         viewPager = (ViewPager) findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPagerAdapter.addFragment(new EnglishFragment(), getResources().getString(R.string.engtabtitle));
         viewPagerAdapter.addFragment(new TibetanFragment(), getResources().getString(R.string.tibtabtitle));
+        viewPagerAdapter.addFragment(new EnglishFragment(), getResources().getString(R.string.engtabtitle));
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
 
