@@ -36,8 +36,7 @@
             <TextView
                 android:layout_width="1dp"
                 android:layout_height="match_parent"
-                android:background="@color/colorWhite"
-                android:textColor="@color/colorWhite" />
+                android:background="@color/colorPrimaryDark"/>
             <LinearLayout
                 android:gravity="center"
                 android:orientation="horizontal"
@@ -68,8 +67,7 @@
             android:layout_width="0dp"
             android:layout_height="match_parent">
             <TextView
-                android:textColor="@color/colorWhite"
-                android:background="@color/colorWhite"
+                android:background="@color/colorPrimaryDark"
                 android:layout_width="1dp"
                 android:layout_height="match_parent" />
             <LinearLayout

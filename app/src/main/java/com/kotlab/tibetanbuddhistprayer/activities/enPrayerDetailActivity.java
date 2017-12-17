@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
+import com.kotlab.tibetanbuddhistprayer.helper.UserSessionManager;
 import com.kotlab.tibetanbuddhistprayer.model.EnglishData;
 import com.warkiz.widget.IndicatorSeekBar;
 
@@ -35,15 +36,21 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     private LinearLayout minuslayout,pluslayout;
     private Dialog dialog;
     private Button dialogbtn ;
-    private int seekbarCount;
+    private float seekbarCount;
+    private UserSessionManager userSessionManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_en_prayer_detail);
-
         initView();
         setupToolBar(getString(R.string.endetailtext));
         getData();
+        userSessionManager = new UserSessionManager(this);
+        float entxtsize = userSessionManager.getEnvalue();
+        txtbody.setTextSize(entxtsize);
+        txttitle.setTextSize(entxtsize);
+        seekbarCount = entxtsize;
+
     }
 
     private void getData() {
@@ -105,6 +112,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
             dialog.dismiss();
             txtbody.setTextSize(seekbarCount);
+            txttitle.setTextSize(seekbarCount);
 
         }
     }
@@ -236,11 +244,12 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
         dialog.setCancelable(true);
         dialog.setCanceledOnTouchOutside(false);
         dialog.show();
-
         IndicatorSeekBar seekBar = dialog.findViewById(R.id.seekbar);
+        seekBar.setProgress(seekbarCount);
         dialogbtn = dialog.findViewById(R.id.dialogbtn);
         dialogbtn.setOnClickListener(this);
         final TextView previewtv = dialog.findViewById(R.id.previewtv);
+         previewtv.setTextSize(seekbarCount);
 
         seekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
             @Override
@@ -248,6 +257,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
                 previewtv.setTextSize(progress);
                 seekbarCount = progress;
+                userSessionManager.setEnvalue(seekbarCount);
 
             }
 

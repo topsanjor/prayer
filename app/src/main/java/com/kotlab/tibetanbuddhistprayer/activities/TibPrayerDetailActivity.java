@@ -1,6 +1,7 @@
 package com.kotlab.tibetanbuddhistprayer.activities;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Typeface;
@@ -17,6 +18,7 @@ import android.widget.Toast;
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
+import com.kotlab.tibetanbuddhistprayer.helper.UserSessionManager;
 import com.kotlab.tibetanbuddhistprayer.model.TibData;
 import com.warkiz.widget.IndicatorSeekBar;
 
@@ -32,16 +34,27 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     private LinearLayout minuslayout,pluslayout;
     private Dialog dialog;
     private Button dialogbtn ;
-    private int seekbarCount;
-    Typeface tf;
+    private float seekbarCount;
+    private Typeface tf;
+    private Context context;
+    private UserSessionManager userSessionManager;
+    private float pv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tib_prayer_detail);
+        this.context=getApplicationContext();
+        userSessionManager = new UserSessionManager(context);
         initView();
         setupToolBar(getResources().getString(R.string.txtpecha));
         getData();
         setcustomfont();
+        float textsie = userSessionManager.getTibvalue();
+        txtbody.setTextSize(textsie);
+        txttitle.setTextSize(textsie);
+        seekbarCount = textsie;
+
+
     }
 
     private void setcustomfont() {
@@ -125,6 +138,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         }else if(v.getId()==R.id.dialogbtn){
             dialog.dismiss();
             txtbody.setTextSize(seekbarCount);
+            txttitle.setTextSize(seekbarCount);
         }
     }
     private void DecreaseCountNumber() {
@@ -210,7 +224,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     }
 
     private void changeFontSize() {
-         int pv=seekbarCount;
+
 
         dialog= new Dialog(this);
         dialog.setContentView(R.layout.font_size_layout);
@@ -220,12 +234,13 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         dialog.show();
 
         IndicatorSeekBar seekBar = dialog.findViewById(R.id.seekbar);
-        seekBar.setProgress(pv);
+        seekBar.setProgress(seekbarCount);
         dialogbtn = dialog.findViewById(R.id.dialogbtn);
         dialogbtn.setOnClickListener(this);
         final TextView previewtv = dialog.findViewById(R.id.previewtv);
         previewtv.setText(getResources().getString(R.string.previewtxttibetan));
         previewtv.setTypeface(tf);
+        previewtv.setTextSize(seekbarCount);
 
         seekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
             @Override
@@ -233,6 +248,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
 
                 previewtv.setTextSize(progress);
                 seekbarCount = progress;
+                userSessionManager.setTibvalue(progress);
             }
 
             @Override
