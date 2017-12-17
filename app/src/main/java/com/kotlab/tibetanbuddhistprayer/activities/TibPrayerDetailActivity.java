@@ -33,6 +33,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     private Dialog dialog;
     private Button dialogbtn ;
     private int seekbarCount;
+    Typeface tf;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +48,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
 
         Typeface typeface = Typeface.createFromAsset(getAssets(),"fonts/monlam_five_header.ttf");
         txttitle.setTypeface(typeface);
-        Typeface tf = Typeface.createFromAsset(getAssets(),"fonts/nototibetanregular.ttf");
+         tf = Typeface.createFromAsset(getAssets(),"fonts/nototibetanregular.ttf");
         Typeface tfbody = Typeface.createFromAsset(getAssets(),"fonts/monlam_two_body.ttf");
         txtbody.setTypeface(tfbody);
         countvtxtbtm.setTypeface(tf);
@@ -76,7 +77,6 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(app_name.toUpperCase());
         settypeface(toolbar);
-
     }
 
     private void settypeface(Toolbar toolbar) {
@@ -146,7 +146,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
                 ex.fillInStackTrace();
             }
         }else {
-            Toast.makeText(this,"it is already at 0",Toast.LENGTH_LONG).show();
+            Toast.makeText(this,"it is already at 0",Toast.LENGTH_SHORT).show();
         }
 
         cursor.close();
@@ -194,12 +194,9 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
             case R.id.menu_fontsize:
                 changeFontSize();
                 return true;
-
             case R.id.menu_reset:
                 resetCount();
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -207,15 +204,13 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     }
 
     private void resetCount() {
-
         long cursor =pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,0);
         counttv.setText("0");
         counttvsecond.setText("0");
-
     }
 
     private void changeFontSize() {
-
+         int pv=seekbarCount;
 
         dialog= new Dialog(this);
         dialog.setContentView(R.layout.font_size_layout);
@@ -225,9 +220,12 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         dialog.show();
 
         IndicatorSeekBar seekBar = dialog.findViewById(R.id.seekbar);
+        seekBar.setProgress(pv);
         dialogbtn = dialog.findViewById(R.id.dialogbtn);
         dialogbtn.setOnClickListener(this);
         final TextView previewtv = dialog.findViewById(R.id.previewtv);
+        previewtv.setText(getResources().getString(R.string.previewtxttibetan));
+        previewtv.setTypeface(tf);
 
         seekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
             @Override

@@ -2,7 +2,7 @@
 <resources>
     <color name="colorPrimary">#FEC238</color>
     <color name="colorPrimaryDark">#E5772E</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorAccent">#ffa220</color>
     <color name="textColorPrimary">#0A0A0A</color>
     <color name="colorBg">#F2F2F2</color>
     <color name="colorWhite">#ffffff</color>
@@ -11,4 +11,6 @@
     <color name="colorbgheaderdetails">#cecdc7</color>
     <color name="colorViewLine">#95989A</color>
     <color name="colorcountbg">#FFE600</color>
+    <color name="colortoolbar">#765431</color>
+
 </resources>

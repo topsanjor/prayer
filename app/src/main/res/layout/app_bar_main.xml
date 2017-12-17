@@ -19,6 +19,7 @@
             app:tabTextAppearance="@style/TabTheme"
             app:tabIndicatorColor="@color/colorWhite"
             app:tabIndicatorHeight="5dp"
+            android:theme="@style/ThemeOverlay.AppCompat.Light"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
