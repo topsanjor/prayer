@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "718340153103",
+    "firebase_url": "https://kotlab-cf245.firebaseio.com",
+    "project_id": "kotlab-cf245",
+    "storage_bucket": "kotlab-cf245.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:718340153103:android:3d91c3508b0d5385",
+        "android_client_info": {
+          "package_name": "com.kotlab.tibetanbuddhistprayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "718340153103-0ie78bm5arepbi4p41cmcoajcumuaai0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kotlab.tibetanbuddhistprayer",
+            "certificate_hash": "dfae1266e3203bce1fea5f189da377e49aa2b624"
+          }
+        },
+        {
+          "client_id": "718340153103-e5loupb5ovf12gk6btgvjhjugccjtk4j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCjPDD7JLwRMDoIZt0v5T1HU_-UyOpfzEU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "718340153103-e5loupb5ovf12gk6btgvjhjugccjtk4j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -18,8 +18,9 @@
     <string name="fontsizetext">Adjust Font Size</string>
     <string name="aboutus">About Us</string>
     <string name="otherappContent">Coming Soon</string>
-    <string name="contactemail">kotlab@gmail.com</string>
-    <string name="aboutustxt">Kotlab is a survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the</string>
+    <string name="contactemail">support@kotlab.com</string>
+    <string name="aboutustxt">Buddhist Daily Prayer app is a one stop app for the Buddhist practitioners. It will provide easy,portable and digitized buddhist prayers. This app is non-commercial and it is dedicated to preserve and promote the religious activities so that every practitioner will benefit from it.Current app is a lite version and it will be developed in forth coming days.
+</string>
     <string name="addcounttxt">Count</string>
     <string name="ematat">at</string>
     <string name="contactustxt">Contact us</string>
@@ -38,5 +39,6 @@
     <string name="tibtitletxtheader">༈ བར་དོ་ཐོས་གྲོལ་ཆེན་མོ་བཞུགས་སོ།</string>
     <string name="endetailtext">Daily Prayer</string>
     <string name="previewtxttibetan">ཨོ་ཨ་ཧཱུཿ</string>
+    <string name="contacwhatsapp">+91-8588072204</string>
 
 </resources>

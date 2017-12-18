@@ -20,24 +20,43 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
+        <LinearLayout
             android:gravity="center"
-            android:textSize="@dimen/headersize"
-            android:text="@string/contacttext"
-            android:textAllCaps="true"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Email:"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="@string/contactemail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_marginTop="10dp"
             android:gravity="center"
-            android:text="@string/ematat"
+            android:orientation="horizontal"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-        <TextView
-            android:layout_marginTop="15dp"
-            android:gravity="center"
-            android:text="@string/contactemail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="Whatsapp:"
+                android:paddingRight="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:text="@string/contacwhatsapp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
 
     </LinearLayout>
 
