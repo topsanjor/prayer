@@ -119,8 +119,8 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
     private void DecreaseCountNumber() {
         Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
-        Log.d("Total", String.valueOf(cursor.getCount()));
-        if(cursor.getCount()>0){
+
+        if(cursor.getCount()==1){
 
             try {
                 if(cursor.moveToFirst()){
@@ -138,15 +138,10 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
                 ex.fillInStackTrace();
             }
 
-        }else {
-            Toast.makeText(this,"it is already at 0",Toast.LENGTH_LONG).show();
         }
 
         cursor.close();
-
         String count = String.valueOf(prayer_count);
-
-        Log.d("ResultCount",count);
         counttv.setText(count);
         counttvsecond.setText(count);
 
@@ -159,7 +154,6 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
         if(cursor.getCount()==0){
             prayer_count ++;
             pechaDatabase.AddPrayerData(pechaDatabase,prayer_id,prayer_count);
-            Log.d("PrayerCount", String.valueOf(prayer_count));
 
         }else {
 
@@ -169,35 +163,19 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
                 if (cursor.moveToFirst()) {
                     do {
                         prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
-                        Log.d("PrayerCount", String.valueOf(prayer_count));
                         prayer_count ++;
-
-
                     }while (cursor.moveToNext());
-
-
                 }
                 pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,prayer_count);
 
             }catch (Exception ex){
                 ex.fillInStackTrace();
-
             }
-
-            Log.d("LstRst", String.valueOf(prayer_count));
-
         }
-
         cursor.close();
-        Log.d("PrayerCountTV", String.valueOf(prayer_count));
-
         String count = String.valueOf(prayer_count);
         counttv.setText(count);
         counttvsecond.setText(count);
-
-
-
-
     }
 
     @Override
@@ -218,8 +196,6 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
             case R.id.menu_reset:
                 resetCount();
                 return true;
-
-
         }
 
         return super.onOptionsItemSelected(item);
@@ -229,15 +205,13 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     private void resetCount() {
 
         long cursor =pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,0);
-        Log.d("Reset",String.valueOf(cursor));
+        prayer_count =0;
+        Log.d("Cursor",String.valueOf(cursor));
         counttv.setText("0");
         counttvsecond.setText("0");
-
     }
 
     private void changeFontSize() {
-
-
         dialog= new Dialog(this);
         dialog.setContentView(R.layout.font_size_layout);
         dialog.setTitle("Preview Font Size");
@@ -284,10 +258,10 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     protected void onResume() {
         super.onResume();
 
-        PechaDatabase pechaDatabase = new PechaDatabase(this);
+         pechaDatabase = new PechaDatabase(this);
         Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
 
-        if(cursor.getCount()>0){
+        if(cursor.getCount()==1){
 
 
             if (cursor.moveToFirst()) {

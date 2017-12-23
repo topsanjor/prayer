@@ -80,13 +80,19 @@ public class EnglishFragment extends Fragment {
     }
 
     private void parseXMLData() {
+        englishDatas.clear();
 
         XmlParser xmlParser = new XmlParser();
+
+        Log.d("StringBla",readXML());
+
         Document  document = xmlParser.getDomElement(readXML());
+
         try{
             NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
+            EnglishData englishDat = new EnglishData("blabla","bbod",0);
+            englishDatas.add(englishDat);
             for(int i=0;i<nodeList.getLength();i++){
-
                 //HashMap<String,String> map = new HashMap<String, String>();
                 Element el = (Element) nodeList.item(i);
                 String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
@@ -117,8 +123,6 @@ public class EnglishFragment extends Fragment {
         linearLayoutManager = new LinearLayoutManager(context);
         recycler.setLayoutManager(linearLayoutManager);
         recycler.setAdapter(enAdapter);
-
-
     }
 
 }

@@ -80,19 +80,4 @@ public class XmlParser {
     }
 
 
-    // getNode function
-    private static String getNode(String sTag, Element eElement) {
-        //if sTag exists(not null) I get childNodes->nlList
-        if (eElement.getElementsByTagName(sTag).item(0)!=null){
-            NodeList nlList = eElement.getElementsByTagName(sTag).item(0).getChildNodes();
-            //check if child (nlList) contain something
-            if ((nlList.getLength() == 0))//if the content is null
-                return "";
-            //if child contains something extract the value of the first element
-            Node nValue = (Node) nlList.item(0);
-            return nValue.getNodeValue();
-        }
-        return "";
-    }
-
 }

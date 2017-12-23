@@ -1,6 +1,5 @@
 package com.kotlab.tibetanbuddhistprayer.activities;
 
-import android.app.Dialog;
 import android.content.Intent;
 
 import android.graphics.Typeface;
@@ -13,20 +12,17 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.fragments.EnglishFragment;
+import com.kotlab.tibetanbuddhistprayer.fragments.myprayer.MyPrayersFragment;
 import com.kotlab.tibetanbuddhistprayer.fragments.TibetanFragment;
 import com.kotlab.tibetanbuddhistprayer.pagerAdapter.ViewPagerAdapter;
-import com.warkiz.widget.IndicatorSeekBar;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -54,6 +50,7 @@ public class MainActivity extends AppCompatActivity
         setupTabLayout();
         createDB();
 
+
     }
 
     private void createDB() {
@@ -69,7 +66,6 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(tooltitle);
 
-
     }
 
     private void setupTabLayout() {
@@ -78,6 +74,7 @@ public class MainActivity extends AppCompatActivity
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new TibetanFragment(), getResources().getString(R.string.tibtabtitle));
         viewPagerAdapter.addFragment(new EnglishFragment(), getResources().getString(R.string.engtabtitle));
+        viewPagerAdapter.addFragment(new MyPrayersFragment(),getResources().getString(R.string.myprayertitle));
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         ViewGroup viewGroup = (ViewGroup) tabLayout.getChildAt(0);
@@ -101,27 +98,6 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
-
-        return super.onOptionsItemSelected(item);
-    }
 
     @SuppressWarnings("StatementWithEmptyBody")
     @Override

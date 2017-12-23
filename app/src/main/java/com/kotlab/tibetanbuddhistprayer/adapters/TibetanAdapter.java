@@ -30,7 +30,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         this.context = context;
     }
 
-    public static class ItemViewHolder extends RecyclerView.ViewHolder {
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView txttibtitle ;
         public ItemViewHolder(View itemView) {
             super(itemView);
@@ -38,7 +38,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public static class HeaderViewHolder extends RecyclerView.ViewHolder {
+    public class HeaderViewHolder extends RecyclerView.ViewHolder {
 
         private TextView txtheadertitle;
         public HeaderViewHolder(View itemView) {
@@ -63,15 +63,18 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
+        final TibData tibDatas = tibData.get(position);
+
+
         if(holder instanceof HeaderViewHolder){
             Typeface typeface = Typeface.createFromAsset(context.getAssets(),"fonts/nototibetanbold.ttf");
             ((HeaderViewHolder) holder).txtheadertitle.setTypeface(typeface);
              ((HeaderViewHolder) holder).txtheadertitle.setText(context.getResources().getString(R.string.tibIndex));
 
         }else if(holder instanceof ItemViewHolder){
+
             Typeface typeface = Typeface.createFromAsset(context.getAssets(),"fonts/nototibetanregular.ttf");
 
-            final TibData tibDatas = tibData.get(position);
             ((ItemViewHolder) holder).txttibtitle.setText(tibDatas.getTibtitle());
               ((ItemViewHolder) holder).txttibtitle.setTypeface(typeface);
 

@@ -92,6 +92,8 @@ public class TibetanFragment extends Fragment {
 
     private void parseXMLData() {
 
+        tibDatas.clear();
+
         XmlParser xmlParser = new XmlParser();
         Document document = xmlParser.getDomElement(readXML());
 
@@ -99,15 +101,18 @@ public class TibetanFragment extends Fragment {
         try{
             NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
 
+
+          TibData tibData= new TibData("indexs","vala",0);
+          tibDatas.add(tibData);
+
             for(int i=0;i<nodeList.getLength();i++){
 
                 Element el = (Element) nodeList.item(i);
                 String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
                 String body = xmlParser.getValue(el,Constansts.KEY_BODY);
                 String idstring = xmlParser.getValue(el,Constansts.KEY_ID) ;
-
                 int id = Integer.parseInt(idstring);
-
+                Log.d("Name", title);
                 TibData  tibdata = new TibData(title,body,id);
                 tibDatas.add(tibdata);
                 tibetanAdapter.notifyDataSetChanged();

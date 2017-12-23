@@ -40,5 +40,7 @@
     <string name="endetailtext">Daily Prayer</string>
     <string name="previewtxttibetan">ཨོ་ཨ་ཧཱུཿ</string>
     <string name="contacwhatsapp">+91-8588072204</string>
+    <string name="myprayertitle">My Prayers</string>
+    <string name="myPrayerIndex">My Prayer</string>
 
 </resources>

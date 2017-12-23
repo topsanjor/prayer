@@ -12,5 +12,6 @@
     <color name="colorViewLine">#95989A</color>
     <color name="colorcountbg">#FFE600</color>
     <color name="colortoolbar">#765431</color>
+    <color name="colorBlack">#000</color>
 
 </resources>

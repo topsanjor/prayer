@@ -219,6 +219,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
 
     private void resetCount() {
         long cursor =pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,0);
+        prayer_count=0;
         counttv.setText("0");
         counttvsecond.setText("0");
     }
