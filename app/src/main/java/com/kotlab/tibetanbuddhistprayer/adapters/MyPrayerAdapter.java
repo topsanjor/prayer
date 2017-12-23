@@ -21,8 +21,7 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     private ArrayList<MyPrayerData> myPrayerData;
     private Context context;
-    private static final int TYPE_HEADER =0 ;
-    private static final int TYPE_ITEM =1;
+
 
     public MyPrayerAdapter(ArrayList<MyPrayerData> myPrayerData , Context context)
     {
@@ -31,13 +30,7 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         this.myPrayerData = myPrayerData;
     }
 
-    private static class HeaderViewHolder  extends RecyclerView.ViewHolder{
-        private TextView myprayerTitle;
-        public HeaderViewHolder(View itemView) {
-            super(itemView);
-            myprayerTitle = itemView.findViewById(R.id.myPrayerHeaderTxt);
-        }
-    }
+
 
 
     private static class  ItemViewHolder extends RecyclerView.ViewHolder {
@@ -50,16 +43,11 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        if(viewType == TYPE_HEADER){
 
-            View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.myprayer_header_layout,parent,false);
-
-            return new HeaderViewHolder(view);
-        }else{
 
             View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.myprayer_item_layout,parent,false);
             return new ItemViewHolder(view);
-        }
+
 
 
     }
@@ -67,11 +55,6 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-        if(holder instanceof HeaderViewHolder){
-
-            ((HeaderViewHolder) holder).myprayerTitle.setText(context.getResources().getString(R.string.myprayertitle));
-
-        }else if(holder instanceof ItemViewHolder){
 
             MyPrayerData mydata = myPrayerData.get(position);
             ((ItemViewHolder) holder).titletextView.setText(mydata.getTitle());
@@ -83,25 +66,10 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                 }
             });
 
-        }
+
 
     }
 
-    @Override
-    public int getItemViewType(int position) {
-
-        if(isPositionHeader(position)){
-            return TYPE_HEADER;
-        }else {
-
-            return TYPE_ITEM;
-        }
-    }
-
-    private boolean isPositionHeader(int position) {
-
-        return position==0;
-    }
 
     @Override
     public int getItemCount() {
