@@ -1,10 +1,12 @@
 package com.kotlab.tibetanbuddhistprayer.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Tsephel_Treps on 12/22/2017.
  */
 
-public class MyPrayerData {
+public class MyPrayerData implements Serializable {
 
     private String title, body;
     private int id,type;

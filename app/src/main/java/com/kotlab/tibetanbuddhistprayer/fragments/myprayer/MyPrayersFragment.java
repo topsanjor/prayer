@@ -73,6 +73,17 @@ public class MyPrayersFragment extends Fragment implements View.OnClickListener 
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        setMytibFragment();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+    }
+
     private void setMyenFragment(){
 
         if(myenFragment==null){
@@ -84,7 +95,6 @@ public class MyPrayersFragment extends Fragment implements View.OnClickListener 
     private void setMytibFragment(){
 
         if(mytibFragment==null){
-
             mytibFragment = new MytibFragment();
         }
 

@@ -68,6 +68,12 @@ public class TibetanFragment extends Fragment {
 
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        parseXMLData();
+    }
+
     public String readXML() {
 
         String line;
@@ -91,17 +97,17 @@ public class TibetanFragment extends Fragment {
     }
 
     private void parseXMLData() {
+        try{
+            tibDatas.clear();
+        }catch (Exception ex) {
 
-        tibDatas.clear();
+            ex.fillInStackTrace();
+        }
 
         XmlParser xmlParser = new XmlParser();
         Document document = xmlParser.getDomElement(readXML());
-
-
         try{
             NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
-
-
           TibData tibData= new TibData("indexs","vala",0);
           tibDatas.add(tibData);
 

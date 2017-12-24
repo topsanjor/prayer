@@ -54,9 +54,10 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void getData() {
+
         try {
 
-            EnglishData englishData = (EnglishData) getIntent().getSerializableExtra("data");
+            EnglishData englishData = (EnglishData) getIntent().getSerializableExtra("enData");
 
             title = englishData.getTitle();
             body = englishData.getBody();

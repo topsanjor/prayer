@@ -79,7 +79,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 public void onClick(View v) {
 
                     Intent intent  = new Intent(context,enPrayerDetailActivity.class);
-                    intent.putExtra("data",enData);
+                    intent.putExtra("enData",enData);
                     context.startActivity(intent);
                 }
             });

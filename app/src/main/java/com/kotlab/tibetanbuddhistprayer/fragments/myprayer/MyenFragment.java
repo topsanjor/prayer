@@ -40,10 +40,10 @@ public class MyenFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        context = getActivity();
+        context = getContext();
         view = inflater.inflate(R.layout.fragment_myen, container, false);
         enRecycler  = view.findViewById(R.id.myenRecycler);
-        enAdapter = new MyPrayerAdapter(myPrayerDatas,context);
+        enAdapter = new MyPrayerAdapter(myPrayerDatas,context,"english");
         linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         enRecycler.setLayoutManager(linearLayoutManager);

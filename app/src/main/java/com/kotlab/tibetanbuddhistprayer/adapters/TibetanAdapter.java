@@ -1,14 +1,21 @@
 package com.kotlab.tibetanbuddhistprayer.adapters;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.activities.TibPrayerDetailActivity;
@@ -32,9 +39,12 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         private TextView txttibtitle ;
+        private LinearLayout linearLayout,linearLayoutIcon;
         public ItemViewHolder(View itemView) {
             super(itemView);
             txttibtitle = itemView.findViewById(R.id.txttibtitle);
+            linearLayout = itemView.findViewById(R.id.itemLinear);
+            linearLayoutIcon = itemView.findViewById(R.id.linearicon);
         }
     }
 
@@ -78,7 +88,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
             ((ItemViewHolder) holder).txttibtitle.setText(tibDatas.getTibtitle());
               ((ItemViewHolder) holder).txttibtitle.setTypeface(typeface);
 
-            holder.itemView.setOnClickListener(new View.OnClickListener() {
+            ((ItemViewHolder) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
@@ -87,6 +97,33 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                     context.startActivity(intent);
                 }
             });
+
+            ((ItemViewHolder) holder).linearLayoutIcon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    final AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
+                    alertDialog.setTitle("Add to My Prayer")
+                            .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+                                    Toast.makeText(context,"hello thanks",Toast.LENGTH_SHORT).show();
+
+                                }
+                            })
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+
+
+                                }
+                            }).show();
+
+                }
+            });
+
         }
     }
 

@@ -38,7 +38,7 @@ public class MytibFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getData();
+
     }
 
     private void getData() {
@@ -48,18 +48,25 @@ public class MytibFragment extends Fragment {
             MyPrayerData myPrayerData = new MyPrayerData("tashi","tghis us body",99,0);
             myPrayerDatas.add(myPrayerData);
         }
+        mytibAdapter.notifyDataSetChanged();
     }
 
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         tibrecycler = view.findViewById(R.id.mytibRecycler);
-        mytibAdapter = new MyPrayerAdapter(myPrayerDatas,context );
+        mytibAdapter = new MyPrayerAdapter(myPrayerDatas,context,"tibetan");
         layoutManager = new LinearLayoutManager(context);
         layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
         tibrecycler.setLayoutManager(layoutManager);
         tibrecycler.setAdapter(mytibAdapter);
-        mytibAdapter.notifyDataSetChanged();
+        getData();
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     @Override

@@ -42,5 +42,6 @@
     <string name="contacwhatsapp">+91-8588072204</string>
     <string name="myprayertitle">My Prayers</string>
     <string name="myPrayerIndex">My Prayer</string>
+    <string name="addtomyprayer">Add to My Prayer</string>
 
 </resources>

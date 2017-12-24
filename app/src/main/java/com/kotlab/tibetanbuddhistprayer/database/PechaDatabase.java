@@ -23,6 +23,16 @@ public class PechaDatabase extends SQLiteOpenHelper {
             + TableData.PrayerTable.PRAYER_ID + " INTEGER,"
             + TableData.PrayerTable.COUNT + " INTEGER );";
 
+    public String CREATE_MYPRAYER_TABLE="CREATE TABLE IF NOT EXISTS "+TableData.MyPrayerTable.TABLE_NAME+"("
+            +TableData.MyPrayerTable.ID + " INTEGER PRIMARY KEY AUTOINCREMENT,"
+            +TableData.MyPrayerTable.COUNT+ " INTEGER,"
+            +TableData.MyPrayerTable.PRAYER_TITLE+" TEXT,"
+            +TableData.MyPrayerTable.PRAYER_BODY +" TEXT,"
+            +TableData.MyPrayerTable.LANG_TYPE + " TEXT,"
+            +TableData.MyPrayerTable.PRAYER_ID+" INTEGER );";
+
+
+
     public PechaDatabase(Context context) {
         super(context,TableData.PrayerTable.DATABASE_NAME,null, currentVersion);
     }
@@ -31,12 +41,17 @@ public class PechaDatabase extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_PRAYER_TABLE);
+        db.execSQL(CREATE_MYPRAYER_TABLE);
+
+        Log.d("SQlite",CREATE_MYPRAYER_TABLE);
+        Log.d("SQlite",CREATE_PRAYER_TABLE);
 
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE IF EXISTS " + TableData.PrayerTable.TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TableData.MyPrayerTable.TABLE_NAME);
     }
 
     // update prayer read count
@@ -85,6 +100,27 @@ public class PechaDatabase extends SQLiteOpenHelper {
             cv.put(TableData.PrayerTable.PRAYER_ID,prayer_id);
             cv.put(TableData.PrayerTable.COUNT,count);
             long result = database.insertWithOnConflict(TableData.PrayerTable.TABLE_NAME,null,cv,SQLiteDatabase.CONFLICT_REPLACE);
+            return result;
+
+        }catch (Exception ex){
+            return -1;
+        }
+    }
+
+
+    public long AddMyPrayerData(PechaDatabase db,String title, String body, String langtype, int prayer_id,int count){
+
+        try {
+
+            SQLiteDatabase database = db.getWritableDatabase();
+            ContentValues cv = new ContentValues();
+            cv.put(TableData.MyPrayerTable.PRAYER_TITLE,title);
+            cv.put(TableData.MyPrayerTable.PRAYER_ID,prayer_id);
+            cv.put(TableData.MyPrayerTable.PRAYER_BODY,body);
+            cv.put(TableData.MyPrayerTable.LANG_TYPE,langtype);
+            cv.put(TableData.MyPrayerTable.COUNT,count);
+
+            long result = database.insertWithOnConflict(TableData.MyPrayerTable.TABLE_NAME,null,cv,SQLiteDatabase.CONFLICT_REPLACE);
             return result;
 
         }catch (Exception ex){
