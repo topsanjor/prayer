@@ -146,11 +146,6 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                                     String langtype="tibetan";
 
-
-
-
-
-
                                     String body =tibDatas.getTibbody();
                                     Log.d(TAG,"body="+ body);
                                     int prayer_id=tibDatas.getTibId();
@@ -159,7 +154,6 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     Log.d(TAG,"prayer id="+prayer_id);
                                     Log.d(TAG,"count ="+prayer_count);
                                     Log.d(TAG,"LANG="+langtype);
-
 
                                     long value = pechaDatabase.AddMyPrayerData(pechaDatabase,title,body,langtype,prayer_id,prayer_count);
                                     Cursor curs = pechaDatabase.getAllMyPrayerData(pechaDatabase);

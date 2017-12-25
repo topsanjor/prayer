@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity
            View vgtabtxt= vgtab.getChildAt(1);
            if(vgtabtxt instanceof TextView){
 
-               Typeface tfff =Typeface.createFromAsset(getAssets(),"fonts/nototibetanbold.ttf");
+               Typeface tfff =Typeface.createFromAsset(getAssets(),"fonts/nototibetanregular.ttf");
                ((TextView) vgtabtxt).setTypeface(tfff);
            }
     }
