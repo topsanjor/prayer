@@ -97,7 +97,8 @@ public class MyPrayersFragment extends Fragment implements View.OnClickListener 
         if(mytibFragment==null){
             mytibFragment = new MytibFragment();
         }
-
         replaceFragment(mytibFragment,mytibFragment.getClass().getName());
     }
+
+
 }

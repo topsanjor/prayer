@@ -114,7 +114,7 @@ public class MytibFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
-//        getDB();
+        getDB();
     }
 
     @Override

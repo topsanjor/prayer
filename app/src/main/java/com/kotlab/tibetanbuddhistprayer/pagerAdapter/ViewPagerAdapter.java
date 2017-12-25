@@ -2,6 +2,7 @@ package com.kotlab.tibetanbuddhistprayer.pagerAdapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
 import java.util.ArrayList;
@@ -44,7 +45,13 @@ public class ViewPagerAdapter extends FragmentStatePagerAdapter {
 
     }
 
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
 
-
-
+    @Override
+    public int getItemPosition(Object object) {
+        return super.getItemPosition(object);
+    }
 }

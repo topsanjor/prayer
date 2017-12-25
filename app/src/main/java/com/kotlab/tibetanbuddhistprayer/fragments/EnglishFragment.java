@@ -2,15 +2,10 @@ package com.kotlab.tibetanbuddhistprayer.fragments;
 
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.content.res.XmlResourceParser;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,18 +20,11 @@ import com.kotlab.tibetanbuddhistprayer.model.EnglishData;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.Inet4Address;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 public class EnglishFragment extends Fragment {
     private RecyclerView recycler;
