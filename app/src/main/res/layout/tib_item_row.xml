@@ -32,6 +32,7 @@
              android:layout_width="0px"
              android:layout_height="match_parent">
              <RelativeLayout
+                 android:id="@+id/nothingid"
                  android:layout_width="match_parent"
                  android:layout_height="match_parent">
                  <ImageView
