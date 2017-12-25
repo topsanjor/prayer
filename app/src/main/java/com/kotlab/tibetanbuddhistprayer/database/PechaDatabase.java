@@ -171,4 +171,16 @@ public class PechaDatabase extends SQLiteOpenHelper {
         }
     }
 
+//    delete my prayer data
+
+    public Boolean DeleteMyPrayerData(PechaDatabase dop,int prayer_id){
+
+        SQLiteDatabase sq = dop.getWritableDatabase();
+
+       int result= sq.delete(TableData.MyPrayerTable.TABLE_NAME, TableData.MyPrayerTable.PRAYER_ID + "=" +
+                prayer_id, null);
+        return  true;
+
+
+    }
 }
