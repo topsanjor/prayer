@@ -17,7 +17,6 @@
     <style name="TabTheme" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">16sp</item>
 
-
     </style>
 
     <style name="AppTheme.NoActionBar">

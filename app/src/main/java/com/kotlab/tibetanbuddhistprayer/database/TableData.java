@@ -28,8 +28,8 @@ public class TableData {
     public static abstract class MyPrayerTable implements BaseColumns {
 
         public static final String DATABASE_NAME = "kotlab_Database";
+        public static final String ID="Id";
         public static final String TABLE_NAME = "MyPrayerKot";
-        public static final String ID = "ID";
         public static final String PRAYER_ID = "prayerID";
         public static final String COUNT="count";
         public static final String PRAYER_TITLE="title";

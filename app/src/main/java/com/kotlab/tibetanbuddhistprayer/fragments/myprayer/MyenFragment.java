@@ -63,7 +63,7 @@ public class MyenFragment extends Fragment {
 
         for (int i = 0; i < 10; i++) {
 
-            MyPrayerData myPrayerData = new MyPrayerData("the english","the body of en",2,0);
+            MyPrayerData myPrayerData = new MyPrayerData("the english","the body of en",2,"english");
               myPrayerDatas.add(myPrayerData);
 
         }

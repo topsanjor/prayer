@@ -1,38 +1,27 @@
 package com.kotlab.tibetanbuddhistprayer.fragments;
 
-
 import android.content.Context;
-
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-
-
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.adapters.TibetanAdapter;
 import com.kotlab.tibetanbuddhistprayer.helper.Constansts;
 import com.kotlab.tibetanbuddhistprayer.model.TibData;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class TibetanFragment extends Fragment {
 
     private RecyclerView tibrecycler;
@@ -64,8 +53,6 @@ public class TibetanFragment extends Fragment {
         layoutManager = new LinearLayoutManager(context);
         tibrecycler.setLayoutManager(layoutManager);
         tibrecycler.setAdapter(tibetanAdapter);
-
-
     }
 
     @Override
@@ -122,21 +109,11 @@ public class TibetanFragment extends Fragment {
                 TibData  tibdata = new TibData(title,body,id);
                 tibDatas.add(tibdata);
                 tibetanAdapter.notifyDataSetChanged();
-
             }
 
-
         }catch (Exception ex){
-
             ex.fillInStackTrace();
-
-            Log.d("Tashi",ex.getMessage());
-
         }
     }
-
-
-
-
 
 }

@@ -8,14 +8,14 @@ import java.io.Serializable;
 
 public class MyPrayerData implements Serializable {
 
-    private String title, body;
-    private int id,type;
+    private String title, body,langtype;
+    private int id;
 
-    public MyPrayerData(String title, String body, int id, int type) {
+    public MyPrayerData(String title, String body, int id, String langtype) {
         this.title = title;
         this.body = body;
         this.id = id;
-        this.type = type;
+        this.langtype=langtype;
     }
 
     public String getTitle() {
@@ -42,11 +42,11 @@ public class MyPrayerData implements Serializable {
         this.id = id;
     }
 
-    public int getType() {
-        return type;
+    public String getType() {
+        return langtype;
     }
 
-    public void setType(int type) {
-        this.type = type;
+    public void setType(String type) {
+        this.langtype = type;
     }
 }

@@ -42,14 +42,14 @@ public class EnglishFragment extends Fragment {
     private RecyclerView recycler;
     private Context context;
     private LinearLayoutManager linearLayoutManager;
-    private ArrayList<EnglishData> englishDatas= new ArrayList<>();
+    private ArrayList<EnglishData> englishDatas = new ArrayList<>();
     private EnglishAdapter enAdapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        final View view =inflater.inflate(R.layout.fragment_english, container, false);
+        final View view = inflater.inflate(R.layout.fragment_english, container, false);
         // Inflate the layout for this fragment
         context = getContext();
         init(view);
@@ -57,7 +57,6 @@ public class EnglishFragment extends Fragment {
         return view;
 
     }
-
 
 
     public String readXML() {
@@ -84,29 +83,29 @@ public class EnglishFragment extends Fragment {
 
         XmlParser xmlParser = new XmlParser();
 
-        Log.d("StringBla",readXML());
+        Log.d("StringBla", readXML());
 
-        Document  document = xmlParser.getDomElement(readXML());
+        Document document = xmlParser.getDomElement(readXML());
 
-        try{
+        try {
             NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
-            EnglishData englishDat = new EnglishData("blabla","bbod",0);
+            EnglishData englishDat = new EnglishData("blabla", "bbod", 0);
             englishDatas.add(englishDat);
-            for(int i=0;i<nodeList.getLength();i++){
+            for (int i = 0; i < nodeList.getLength(); i++) {
                 //HashMap<String,String> map = new HashMap<String, String>();
                 Element el = (Element) nodeList.item(i);
                 String title = xmlParser.getValue(el, Constansts.KEY_TITLE);
-                String body = xmlParser.getValue(el,Constansts.KEY_BODY);
-                String idstring = xmlParser.getValue(el,Constansts.KEY_ID) ;
+                String body = xmlParser.getValue(el, Constansts.KEY_BODY);
+                String idstring = xmlParser.getValue(el, Constansts.KEY_ID);
                 int id = Integer.parseInt(idstring);
-                EnglishData englishData = new EnglishData(title,body,id);
+                EnglishData englishData = new EnglishData(title, body, id);
                 englishDatas.add(englishData);
                 enAdapter.notifyDataSetChanged();
 
             }
 
 
-        }catch (Exception ex){
+        } catch (Exception ex) {
 
             ex.fillInStackTrace();
 
@@ -115,11 +114,10 @@ public class EnglishFragment extends Fragment {
     }
 
 
-
     private void init(View view) {
 
-        recycler =(RecyclerView) view.findViewById(R.id.recycler);
-        enAdapter = new EnglishAdapter(englishDatas,context);
+        recycler = (RecyclerView) view.findViewById(R.id.recycler);
+        enAdapter = new EnglishAdapter(englishDatas, context);
         linearLayoutManager = new LinearLayoutManager(context);
         recycler.setLayoutManager(linearLayoutManager);
         recycler.setAdapter(enAdapter);

@@ -2,6 +2,7 @@ package com.kotlab.tibetanbuddhistprayer.adapters;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,7 +37,7 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
     private static class  ItemViewHolder extends RecyclerView.ViewHolder {
-         private TextView titletextView;
+        public TextView titletextView;
         public ItemViewHolder(View itemView){
             super(itemView);
             titletextView = itemView.findViewById(R.id.txtmyprayertitle);
@@ -59,6 +60,15 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
 
             final MyPrayerData mydata = myPrayerData.get(position);
+
+
+            if(mptype.equalsIgnoreCase("tibetan")){
+                Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/nototibetanregular.ttf");
+
+                ((ItemViewHolder) holder).titletextView.setTypeface(typeface);
+            }
+
+
             ((ItemViewHolder) holder).titletextView.setText(mydata.getTitle());
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -72,6 +82,7 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
 
                     }else if(mptype.equalsIgnoreCase("tibetan")) {
                         Intent intent = new Intent(context, TibPrayerDetailActivity.class);
+                        intent.putExtra("type","mptibetan");
                         intent.putExtra("tibData",mydata);
                         context.startActivity(intent);
                     }

@@ -19,6 +19,7 @@ import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
 import com.kotlab.tibetanbuddhistprayer.helper.UserSessionManager;
+import com.kotlab.tibetanbuddhistprayer.model.MyPrayerData;
 import com.kotlab.tibetanbuddhistprayer.model.TibData;
 import com.warkiz.widget.IndicatorSeekBar;
 
@@ -109,16 +110,42 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     }
 
     private void getData() {
-        try {
-            TibData tibData = (TibData) getIntent().getSerializableExtra("tibData");
-            title = tibData.getTibtitle();
-            body=tibData.getTibbody();
-            prayer_id=tibData.getTibId();
-            txttitle.setText(title);
-            txtbody.setText(body);
-        } catch (Exception ex) {
 
-            ex.fillInStackTrace();
+        Intent  intent =getIntent();
+        String type = intent.getStringExtra("type");
+
+        if(type!=null){
+
+            if(type.equalsIgnoreCase("tibetan")){
+
+                try {
+                    TibData tibData = (TibData) getIntent().getSerializableExtra("tibData");
+                    title = tibData.getTibtitle();
+                    body=tibData.getTibbody();
+                    prayer_id=tibData.getTibId();
+                    txttitle.setText(title);
+                    txtbody.setText(body);
+                } catch (Exception ex) {
+
+                    ex.fillInStackTrace();
+                }
+
+            }else if(type.equalsIgnoreCase("mptibetan")){
+
+                try {
+
+                    MyPrayerData mpdata = (MyPrayerData) getIntent().getSerializableExtra("tibData");
+                    title = mpdata.getTitle();
+                    body=mpdata.getBody();
+                    prayer_id=mpdata.getId();
+                    txttitle.setText(title);
+                    txtbody.setText(body);
+                } catch (Exception ex) {
+
+                    ex.fillInStackTrace();
+                }
+
+            }
         }
     }
 

@@ -12,4 +12,5 @@
     <dimen name="headertwo">16dp</dimen>
     <dimen name="tibbodytxtsize">20sp</dimen>
     <dimen name="tibtibtletxtsize">20sp</dimen>
+    <dimen name="homefragmentsize">10dp</dimen>
 </resources>
