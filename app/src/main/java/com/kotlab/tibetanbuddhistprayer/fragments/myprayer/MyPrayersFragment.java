@@ -1,23 +1,16 @@
 package com.kotlab.tibetanbuddhistprayer.fragments.myprayer;
 
 import android.content.Context;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.kotlab.tibetanbuddhistprayer.R;
-import com.kotlab.tibetanbuddhistprayer.adapters.MyPrayerAdapter;
-import com.kotlab.tibetanbuddhistprayer.model.MyPrayerData;
-
-import java.util.ArrayList;
 
 public class MyPrayersFragment extends Fragment implements View.OnClickListener {
 

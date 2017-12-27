@@ -8,12 +8,10 @@ import android.database.Cursor;
 import android.database.DatabaseUtils;
 import android.graphics.Typeface;
 import android.support.v7.widget.RecyclerView;
-
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,10 +22,7 @@ import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
 import com.kotlab.tibetanbuddhistprayer.model.TibData;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.logging.Handler;
 
 /**
  * Created by topjor on 11/28/2017.

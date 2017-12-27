@@ -43,5 +43,7 @@
     <string name="myprayertitle">My Prayers</string>
     <string name="myPrayerIndex">My Prayer</string>
     <string name="addtomyprayer">Add to My Prayer</string>
+    <string name="menusharetxt">Share Prayer</string>
+    <string name="action_search">Search</string>
 
 </resources>

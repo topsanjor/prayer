@@ -6,8 +6,6 @@ import android.widget.TextView;
 
 import com.kotlab.tibetanbuddhistprayer.R;
 
-import org.w3c.dom.Text;
-
 /**
  * Created by topjor on 11/28/2017.
  */

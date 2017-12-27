@@ -2,12 +2,14 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:icon="@drawable/ic_minus"
+        android:id="@+id/menu_share"
+        android:title="@string/menusharetxt"
+        app:showAsAction="never"/>
+    <item
         android:id="@+id/menu_reset"
         android:title="@string/resettxt"
         app:showAsAction="never"/>
     <item
-        android:icon="@drawable/ic_fontsizeicon"
         android:id="@+id/menu_fontsize"
         android:title="@string/fontsizetext"
         app:showAsAction="never"/>

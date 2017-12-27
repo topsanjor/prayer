@@ -3,22 +3,25 @@ package com.kotlab.tibetanbuddhistprayer.activities;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.design.widget.TabLayout;
-import android.support.v4.view.ViewPager;
 import android.support.design.widget.NavigationView;
+import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.fragments.EnglishFragment;
-import com.kotlab.tibetanbuddhistprayer.fragments.myprayer.MyPrayersFragment;
 import com.kotlab.tibetanbuddhistprayer.fragments.TibetanFragment;
+import com.kotlab.tibetanbuddhistprayer.fragments.myprayer.MyPrayersFragment;
 import com.kotlab.tibetanbuddhistprayer.pagerAdapter.ViewPagerAdapter;
 
 public class MainActivity extends AppCompatActivity
@@ -73,6 +76,27 @@ public class MainActivity extends AppCompatActivity
                Typeface tfff =Typeface.createFromAsset(getAssets(),"fonts/nototibetanregular.ttf");
                ((TextView) vgtabtxt).setTypeface(tfff);
            }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main,menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if(item.getItemId()==R.id.action_search){
+
+            showMsg("Search clicked");
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void showMsg(String s) {
+
+        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
     }
 
     @Override

@@ -3,8 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/toolbar"
     android:layout_width="match_parent"
-    android:layout_height="?attr/actionBarSize"
-    android:theme="@style/ThemeOverlay.AppCompat.Light"
-    app:titleTextAppearance="@style/Toolbar.TitleText">
+    android:theme="@style/toolbartheme"
+    app:popupTheme="@style/AppTheme.PopupOverlay"
+    app:titleTextAppearance="@style/Toolbar.TitleText"
+    android:layout_height="?attr/actionBarSize">
 
 </android.support.v7.widget.Toolbar>

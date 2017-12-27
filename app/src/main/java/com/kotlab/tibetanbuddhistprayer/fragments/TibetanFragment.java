@@ -9,13 +9,16 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.adapters.TibetanAdapter;
 import com.kotlab.tibetanbuddhistprayer.helper.Constansts;
 import com.kotlab.tibetanbuddhistprayer.model.TibData;
+
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;

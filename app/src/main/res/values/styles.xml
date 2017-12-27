@@ -7,13 +7,17 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
-    </style>
-    
-    <style name="toolbarStyle">
-        <item name="android:textColorPrimary">@color/colorPrimaryDark</item>
-        <item name="android:textColorSecondary">@color/colorAccent</item>
 
     </style>
+    <style name="toolbartheme" parent="AppTheme">
+
+        <item name="android:textColorSecondary">@color/colortoolbar</item>
+        <!--toolbar color of the text like title colo-->
+        <item name="android:textColorPrimary">@color/colorBlack</item>
+
+    </style>
+    
+
     <style name="TabTheme" parent="TextAppearance.Design.Tab">
         <item name="android:textSize">16sp</item>
 
@@ -29,7 +33,7 @@
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">20sp</item>
 
     </style>
     <style name="DialogeTheme" parent="Theme.AppCompat.Dialog.Alert">

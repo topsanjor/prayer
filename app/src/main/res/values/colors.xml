@@ -11,7 +11,7 @@
     <color name="colorbgheaderdetails">#cecdc7</color>
     <color name="colorViewLine">#95989A</color>
     <color name="colorcountbg">#FFE600</color>
-    <color name="colortoolbar">#765431</color>
+    <color name="colortoolbar">#3e3e3e</color>
     <color name="colorBlack">#000</color>
 
 </resources>

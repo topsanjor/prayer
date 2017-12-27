@@ -4,9 +4,7 @@ package com.kotlab.tibetanbuddhistprayer.fragments.myprayer;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.DatabaseUtils;
-import android.icu.text.LocaleDisplayNames;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -19,7 +17,6 @@ import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.adapters.MyPrayerAdapter;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
-import com.kotlab.tibetanbuddhistprayer.helper.Utils;
 import com.kotlab.tibetanbuddhistprayer.model.MyPrayerData;
 
 import java.util.ArrayList;

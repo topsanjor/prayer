@@ -1,10 +1,11 @@
 package com.kotlab.tibetanbuddhistprayer.activities;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -22,26 +23,27 @@ import com.kotlab.tibetanbuddhistprayer.helper.UserSessionManager;
 import com.kotlab.tibetanbuddhistprayer.model.EnglishData;
 import com.warkiz.widget.IndicatorSeekBar;
 
-import org.w3c.dom.Text;
-
 public class enPrayerDetailActivity extends AppCompatActivity implements View.OnClickListener {
     private Toolbar toolbar;
     private static final String TAG = "PrayerDetails";
     private TextView txttitle, txtbody;
-    private TextView counttv,counttvsecond;
+    private TextView counttv, counttvsecond;
     private PechaDatabase pechaDatabase;
-    private String title,body;
+    private String title, body;
     private int prayer_id;
-    private int prayer_count =0;
-    private LinearLayout minuslayout,pluslayout;
+    private int prayer_count = 0;
+    private LinearLayout minuslayout, pluslayout;
     private Dialog dialog;
-    private Button dialogbtn ;
+    private Button dialogbtn;
     private float seekbarCount;
     private UserSessionManager userSessionManager;
+    private Context context;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_en_prayer_detail);
+        this.context =getApplicationContext();
         initView();
         setupToolBar(getString(R.string.endetailtext));
         getData();
@@ -58,10 +60,9 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
         try {
 
             EnglishData englishData = (EnglishData) getIntent().getSerializableExtra("enData");
-
             title = englishData.getTitle();
             body = englishData.getBody();
-            prayer_id=englishData.getId();
+            prayer_id = englishData.getId();
             txttitle.setText(title);
             txtbody.setText(body);
 
@@ -73,7 +74,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.detail_menu_en,menu);
+        getMenuInflater().inflate(R.menu.detail_menu_en, menu);
         return true;
     }
 
@@ -91,7 +92,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         txttitle = (TextView) findViewById(R.id.entxttitle);
         txtbody = (TextView) findViewById(R.id.entxtbody);
-        counttv= (TextView) findViewById(R.id.counttv);
+        counttv = (TextView) findViewById(R.id.counttv);
         counttvsecond = (TextView) findViewById(R.id.counttvsecond);
         minuslayout = (LinearLayout) findViewById(R.id.layoutminus);
         pluslayout = (LinearLayout) findViewById(R.id.layoutplus);
@@ -107,9 +108,9 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
         if (v.getId() == R.id.layoutplus) {
             IncreaseCountNumber();
-        }else if(v.getId()==R.id.layoutminus){
+        } else if (v.getId() == R.id.layoutminus) {
             DecreaseCountNumber();
-        }else if(v.getId()==R.id.dialogbtn){
+        } else if (v.getId() == R.id.dialogbtn) {
 
             dialog.dismiss();
             txtbody.setTextSize(seekbarCount);
@@ -119,23 +120,23 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     }
 
     private void DecreaseCountNumber() {
-        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
+        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, prayer_id);
 
-        if(cursor.getCount()==1){
+        if (cursor.getCount() == 1) {
 
             try {
-                if(cursor.moveToFirst()){
-                    do{
-                        if(prayer_count>0){
+                if (cursor.moveToFirst()) {
+                    do {
+                        if (prayer_count > 0) {
                             prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
                             prayer_count--;
-                        }else {
-                            Toast.makeText(this,"it is already at 0",Toast.LENGTH_SHORT).show();
+                        } else {
+                            Toast.makeText(this, "it is already at 0", Toast.LENGTH_SHORT).show();
                         }
-                    }while (cursor.moveToNext());
+                    } while (cursor.moveToNext());
                 }
-                pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,prayer_count);
-            }catch (Exception ex){
+                pechaDatabase.UpdatePrayeReadCount(pechaDatabase, prayer_id, prayer_count);
+            } catch (Exception ex) {
                 ex.fillInStackTrace();
             }
 
@@ -151,25 +152,25 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
 
     private void IncreaseCountNumber() {
 
-        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
-        if(cursor.getCount()==0){
-            prayer_count ++;
-            pechaDatabase.AddPrayerData(pechaDatabase,prayer_id,prayer_count);
+        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, prayer_id);
+        if (cursor.getCount() == 0) {
+            prayer_count++;
+            pechaDatabase.AddPrayerData(pechaDatabase, prayer_id, prayer_count);
 
-        }else {
+        } else {
 
 
-            try{
+            try {
 
                 if (cursor.moveToFirst()) {
                     do {
                         prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
-                        prayer_count ++;
-                    }while (cursor.moveToNext());
+                        prayer_count++;
+                    } while (cursor.moveToNext());
                 }
-                pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,prayer_count);
+                pechaDatabase.UpdatePrayeReadCount(pechaDatabase, prayer_id, prayer_count);
 
-            }catch (Exception ex){
+            } catch (Exception ex) {
                 ex.fillInStackTrace();
             }
         }
@@ -182,13 +183,13 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
 
-        switch (item.getItemId()){
+        switch (item.getItemId()) {
             case android.R.id.home:
-                Intent intent = new Intent(enPrayerDetailActivity.this,MainActivity.class);
+                Intent intent = new Intent(enPrayerDetailActivity.this, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                 startActivity(intent);
                 finish();
-                overridePendingTransition(R.anim.left_to_right,R.anim.right_to_left);
+                overridePendingTransition(R.anim.left_to_right, R.anim.right_to_left);
                 return true;
             case R.id.menu_fontsize:
                 changeFontSize();
@@ -197,23 +198,64 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
             case R.id.menu_reset:
                 resetCount();
                 return true;
+            case R.id.menu_prayer:
+                AddtoMyPrayer();
+                break;
         }
 
         return super.onOptionsItemSelected(item);
 
     }
 
+    private void AddtoMyPrayer() {
+
+        int prayer_count = 0;
+        PechaDatabase pechaDatabase = new PechaDatabase(context);
+        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, prayer_id);
+        Log.d("Count Value", String.valueOf(cursor));
+        try {
+            if (cursor.moveToFirst()) {
+                do {
+                    prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
+
+                } while (cursor.moveToNext());
+            }
+            cursor.close();
+
+        } catch (Exception ex) {
+            ex.fillInStackTrace();
+        }
+        if(cursor.isClosed()==false)
+        {
+            cursor.close();
+        }
+        String langtype="english";
+        long value = pechaDatabase.AddMyPrayerData(pechaDatabase,title,body,langtype,prayer_id,prayer_count);
+        if(value==-1){
+            showMessage("Something wrong try again.");
+        }else {
+            showMessage("successfully entered");
+        }
+
+    }
+
+    private void showMessage(String s) {
+
+        Toast.makeText(context,s,Toast.LENGTH_SHORT).show();
+    }
+
+
     private void resetCount() {
 
-        long cursor =pechaDatabase.UpdatePrayeReadCount(pechaDatabase,prayer_id,0);
-        prayer_count =0;
-        Log.d("Cursor",String.valueOf(cursor));
+        long cursor = pechaDatabase.UpdatePrayeReadCount(pechaDatabase, prayer_id, 0);
+        prayer_count = 0;
+        Log.d("Cursor", String.valueOf(cursor));
         counttv.setText("0");
         counttvsecond.setText("0");
     }
 
     private void changeFontSize() {
-        dialog= new Dialog(this);
+        dialog = new Dialog(this);
         dialog.setContentView(R.layout.font_size_layout);
         dialog.setTitle("Preview Font Size");
         dialog.setCancelable(true);
@@ -224,7 +266,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
         dialogbtn = dialog.findViewById(R.id.dialogbtn);
         dialogbtn.setOnClickListener(this);
         final TextView previewtv = dialog.findViewById(R.id.previewtv);
-         previewtv.setTextSize(seekbarCount);
+        previewtv.setTextSize(seekbarCount);
 
         seekBar.setOnSeekChangeListener(new IndicatorSeekBar.OnSeekBarChangeListener() {
             @Override
@@ -259,10 +301,10 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
     protected void onResume() {
         super.onResume();
 
-         pechaDatabase = new PechaDatabase(this);
-        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase,prayer_id);
+        pechaDatabase = new PechaDatabase(this);
+        Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, prayer_id);
 
-        if(cursor.getCount()==1){
+        if (cursor.getCount() == 1) {
 
 
             if (cursor.moveToFirst()) {
@@ -270,7 +312,7 @@ public class enPrayerDetailActivity extends AppCompatActivity implements View.On
                     prayer_count = cursor.getInt(cursor.getColumnIndex(TableData.PrayerTable.COUNT));
 
 
-                }while (cursor.moveToNext());
+                } while (cursor.moveToNext());
 
 
             }

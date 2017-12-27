@@ -20,6 +20,7 @@ import com.kotlab.tibetanbuddhistprayer.activities.enPrayerDetailActivity;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
 import com.kotlab.tibetanbuddhistprayer.model.EnglishData;
+
 import java.util.ArrayList;
 
 /**
