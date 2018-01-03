@@ -60,23 +60,7 @@ public class MyenFragment extends Fragment {
 
     }
 
-    private void getData() {
-        try {
-            myPrayerDatas.clear();
-        } catch (Exception ex) {
 
-            ex.fillInStackTrace();
-        }
-
-        for (int i = 0; i < 10; i++) {
-
-            MyPrayerData myPrayerData = new MyPrayerData("the english","the body of en",2,"english");
-              myPrayerDatas.add(myPrayerData);
-
-        }
-
-        enAdapter.notifyDataSetChanged();
-    }
 
     private void getDB() {
         try{
@@ -110,8 +94,5 @@ public class MyenFragment extends Fragment {
 
     }
 
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-    }
+
 }

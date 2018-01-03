@@ -34,7 +34,6 @@ public class MytibFragment extends Fragment {
     private View view;
     private Context context;
 
-
     public MytibFragment() {
 
 
@@ -43,32 +42,7 @@ public class MytibFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-
-    }
-
-    private void getData() {
-        myPrayerDatas.clear();
-        for(int i=0;i<10;i++){
-
-            MyPrayerData myPrayerData = new MyPrayerData("tashi","tghis us body",99,"tibetan");
-            myPrayerDatas.add(myPrayerData);
-        }
-        mytibAdapter.notifyDataSetChanged();
-    }
-
-    @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        tibrecycler = view.findViewById(R.id.mytibRecycler);
-        mytibAdapter = new MyPrayerAdapter(myPrayerDatas,context,"tibetan");
-        layoutManager = new LinearLayoutManager(context);
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        tibrecycler.setLayoutManager(layoutManager);
-        tibrecycler.setAdapter(mytibAdapter);
-        //getData();
-        getDB();
-
+        context = getActivity();
 
 
     }
@@ -109,18 +83,18 @@ public class MytibFragment extends Fragment {
     }
 
     @Override
-    public void onResume() {
-        super.onResume();
-        getDB();
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_mytib, container, false);
         context = getContext();
-
+        tibrecycler = view.findViewById(R.id.mytibRecycler);
+        mytibAdapter = new MyPrayerAdapter(myPrayerDatas,context,"tibetan");
+        layoutManager = new LinearLayoutManager(context);
+        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+        tibrecycler.setLayoutManager(layoutManager);
+        tibrecycler.setAdapter(mytibAdapter);
+        getDB();
         return view;
     }
 

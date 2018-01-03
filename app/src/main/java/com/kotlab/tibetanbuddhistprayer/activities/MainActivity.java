@@ -5,6 +5,8 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -23,6 +25,7 @@ import com.kotlab.tibetanbuddhistprayer.fragments.EnglishFragment;
 import com.kotlab.tibetanbuddhistprayer.fragments.TibetanFragment;
 import com.kotlab.tibetanbuddhistprayer.fragments.myprayer.MyPrayersFragment;
 import com.kotlab.tibetanbuddhistprayer.pagerAdapter.ViewPagerAdapter;
+import com.miguelcatalan.materialsearchview.MaterialSearchView;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -31,6 +34,7 @@ public class MainActivity extends AppCompatActivity
     private ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     private Toolbar toolbar;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,39 +68,40 @@ public class MainActivity extends AppCompatActivity
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.addFragment(new TibetanFragment(), getResources().getString(R.string.tibtabtitle));
         viewPagerAdapter.addFragment(new EnglishFragment(), getResources().getString(R.string.engtabtitle));
-        viewPagerAdapter.addFragment(new MyPrayersFragment(),getResources().getString(R.string.myprayertitle));
+        viewPagerAdapter.addFragment(new MyPrayersFragment(), getResources().getString(R.string.myprayertitle));
         viewPager.setAdapter(viewPagerAdapter);
         tabLayout.setupWithViewPager(viewPager);
         ViewGroup viewGroup = (ViewGroup) tabLayout.getChildAt(0);
-           ViewGroup vgtab = (ViewGroup) viewGroup.getChildAt(0);
+        ViewGroup vgtab = (ViewGroup) viewGroup.getChildAt(0);
 
-           View vgtabtxt= vgtab.getChildAt(1);
-           if(vgtabtxt instanceof TextView){
+        View vgtabtxt = vgtab.getChildAt(1);
+        if (vgtabtxt instanceof TextView) {
 
-               Typeface tfff =Typeface.createFromAsset(getAssets(),"fonts/nototibetanregular.ttf");
-               ((TextView) vgtabtxt).setTypeface(tfff);
-           }
+            Typeface tfff = Typeface.createFromAsset(getAssets(), "fonts/nototibetanregular.ttf");
+            ((TextView) vgtabtxt).setTypeface(tfff);
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main,menu);
+        getMenuInflater().inflate(R.menu.main, menu);
+
         return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId()==R.id.action_search){
-
-            showMsg("Search clicked");
+        if (item.getItemId() == R.id.action_search) {
+            showMsg("I am clicked..");
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+
     private void showMsg(String s) {
 
-        Toast.makeText(this,s,Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, s, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -104,7 +109,7 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
-        } else {
+        }  else {
             super.onBackPressed();
         }
     }
@@ -142,5 +147,8 @@ public class MainActivity extends AppCompatActivity
         return true;
     }
 
-
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+    }
 }

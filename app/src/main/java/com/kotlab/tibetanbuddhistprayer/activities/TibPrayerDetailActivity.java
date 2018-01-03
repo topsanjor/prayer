@@ -4,20 +4,22 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
-import android.database.DatabaseUtils;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.support.v4.view.GestureDetectorCompat;
+import android.support.v4.view.MotionEventCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.database.PechaDatabase;
 import com.kotlab.tibetanbuddhistprayer.database.TableData;
@@ -26,7 +28,9 @@ import com.kotlab.tibetanbuddhistprayer.model.MyPrayerData;
 import com.kotlab.tibetanbuddhistprayer.model.TibData;
 import com.warkiz.widget.IndicatorSeekBar;
 
-public class TibPrayerDetailActivity extends AppCompatActivity implements View.OnClickListener {
+import java.util.ArrayList;
+
+public class TibPrayerDetailActivity extends AppCompatActivity implements View.OnClickListener,GestureDetector.OnGestureListener{
     private Toolbar toolbar;
     private static final String TAG = "PrayerDetails";
     private TextView txttitle, txtbody;
@@ -43,12 +47,15 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     private Context context;
     private UserSessionManager userSessionManager;
     private float pv;
-
+    private GestureDetectorCompat gestureDetectorCompat ;
+    private LinearLayout tibdetail_layout;
+    private ArrayList<TibData> tibDatas;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tib_prayer_detail);
         this.context = getApplicationContext();
+        gestureDetectorCompat = new GestureDetectorCompat(context,TibPrayerDetailActivity.this);
         userSessionManager = new UserSessionManager(context);
         initView();
         setupToolBar(getResources().getString(R.string.txtpecha));
@@ -58,10 +65,16 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         txtbody.setTextSize(textsie);
         txttitle.setTextSize(textsie);
         seekbarCount = textsie;
+        try  {
+            int size =tibDatas.size();
+            Log.d(TAG,"Data size="+String.valueOf(size));
 
+        }catch (Exception ex) {
+
+            ex.fillInStackTrace();
+        }
 
     }
-
 
     private void setcustomfont() {
 
@@ -75,6 +88,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
     }
 
     private void initView() {
+        tibdetail_layout = findViewById(R.id.tibdetailaLayout);
         toolbar = findViewById(R.id.toolbar);
         txtbody = findViewById(R.id.tibtxtbody);
         txttitle = findViewById(R.id.tibtxttitle);
@@ -97,6 +111,7 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
         getSupportActionBar().setTitle(app_name.toUpperCase());
         settypeface(toolbar);
     }
+
 
     private void settypeface(Toolbar toolbar) {
 
@@ -365,5 +380,58 @@ public class TibPrayerDetailActivity extends AppCompatActivity implements View.O
 
     }
 
+    @Override
+    public boolean onDown(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public void onShowPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onSingleTapUp(MotionEvent e) {
+        return false;
+    }
+
+    @Override
+    public boolean onScroll(MotionEvent e1, MotionEvent e2, float distanceX, float distanceY) {
+        return false;
+    }
+
+    @Override
+    public void onLongPress(MotionEvent e) {
+
+    }
+
+    @Override
+    public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+
+        if(e1.getX() - e2.getX() > 50){
+
+            Toast.makeText(TibPrayerDetailActivity.this , " Swipe Left " , Toast.LENGTH_LONG).show();
+            return true;
+        }
+
+        if(e2.getX() - e1.getX() > 50) {
+
+            Toast.makeText(TibPrayerDetailActivity.this, " Swipe Right ", Toast.LENGTH_LONG).show();
+
+            return true;
+        }
+        else {
+
+            return true ;
+        }
+
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        this.gestureDetectorCompat.onTouchEvent(ev);
+        Log.d(TAG,"Dispatched...");
+        return super.dispatchTouchEvent(ev);
+    }
 
 }

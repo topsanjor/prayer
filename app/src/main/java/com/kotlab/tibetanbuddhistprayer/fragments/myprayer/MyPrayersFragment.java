@@ -15,15 +15,16 @@ import com.kotlab.tibetanbuddhistprayer.R;
 public class MyPrayersFragment extends Fragment implements View.OnClickListener {
 
     private Context context;
+    private MytibFragment mytibFragment =null;
     private MyenFragment myenFragment;
-    private MytibFragment mytibFragment;
     private TextView textViewTibetan,textViewEnglish;
+    private View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_my_prayers, container, false);
-        context = getContext();
+        view = inflater.inflate(R.layout.fragment_my_prayers, container, false);
+        context = getActivity();
         textViewEnglish = view.findViewById(R.id.textViewEnglish);
         textViewTibetan = view.findViewById(R.id.textViewTibetan);
         textViewTibetan.setOnClickListener(this);
@@ -34,7 +35,8 @@ public class MyPrayersFragment extends Fragment implements View.OnClickListener 
 
     private void replaceFragment(Fragment newFragment, String tag) {
 
-        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        FragmentTransaction transaction =getChildFragmentManager().beginTransaction();
         transaction.replace(R.id.frame_myprayer, newFragment, tag);
         transaction.commit();
     }
@@ -64,17 +66,6 @@ public class MyPrayersFragment extends Fragment implements View.OnClickListener 
 
         }
 
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        setMytibFragment();
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
     }
 
     private void setMyenFragment(){

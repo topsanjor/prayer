@@ -62,7 +62,7 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
 
         final MyPrayerData mydata = myPrayerData.get(position);
@@ -108,6 +108,9 @@ public class MyPrayerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
                                 showMessage("Oh.. you deleted");
                                 PechaDatabase pecha_db= new PechaDatabase(context);
                                 pecha_db.DeleteMyPrayerData(pecha_db,prayer_id);
+                                myPrayerData.remove(position);
+                                notifyDataSetChanged();
+
 
                             }
                         }).setNegativeButton("No", new DialogInterface.OnClickListener() {
