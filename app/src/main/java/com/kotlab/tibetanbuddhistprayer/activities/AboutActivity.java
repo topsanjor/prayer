@@ -55,7 +55,7 @@ public class AboutActivity extends AppCompatActivity {
 
         switch(action) {
             case (MotionEvent.ACTION_DOWN) :
-                Log.d(TAG,"Action was DOWN");
+                Log.d(TAG,"Action was DOWN and nothing is good");
                 return true;
             case (MotionEvent.ACTION_MOVE) :
                 Log.d(TAG,"Action was MOVE");
