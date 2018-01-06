@@ -64,7 +64,7 @@
                 <View
                     android:background="@color/colorViewLine"
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"></View>
+                    android:layout_height="2dp"></View>
 
             </LinearLayout>
 
