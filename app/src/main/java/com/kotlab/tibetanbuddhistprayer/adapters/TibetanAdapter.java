@@ -12,6 +12,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,8 +30,9 @@ import java.util.ArrayList;
  * Created by topjor on 11/28/2017.
  */
 
-public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable {
     private ArrayList<TibData> tibData;
+    private ArrayList<TibData> filtertibData;
     private Context context;
     private static final int TYPE_HEAER = 0;
     private static final int TYPE_ITEM = 1;
@@ -38,6 +41,41 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public TibetanAdapter(ArrayList<TibData> tibData, Context context) {
         this.tibData = tibData;
         this.context = context;
+        this.filtertibData=tibData;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if(charString.isEmpty()){
+                    filtertibData = tibData;
+                }else {
+                    ArrayList<TibData> filteredtibData = new ArrayList<>();
+                    TibData td = new TibData(context.getResources().getString(R.string.tibIndex),"body",0);
+                    filteredtibData.add(td);
+                    for(TibData tibDat:tibData){
+                        if(tibDat.getTibtitle().toLowerCase().contains(charString.toLowerCase())){
+                            filteredtibData.add(tibDat);
+                        }
+                    }
+                    filtertibData = filteredtibData;
+                }
+                FilterResults filterResults = new FilterResults();
+                filterResults.values =filtertibData;
+                return filterResults;
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+
+                filtertibData = (ArrayList<TibData>) results.values;
+                notifyDataSetChanged();
+
+            }
+        };
     }
 
     public class ItemViewHolder extends RecyclerView.ViewHolder {
@@ -76,9 +114,8 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(final RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(final RecyclerView.ViewHolder holder, final int position) {
 
-        final TibData tibDatas = tibData.get(position);
 
         if (holder instanceof HeaderViewHolder) {
             Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/nototibetanbold.ttf");
@@ -89,7 +126,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
             Typeface typeface = Typeface.createFromAsset(context.getAssets(), "fonts/nototibetanregular.ttf");
 
-            ((ItemViewHolder) holder).txttibtitle.setText(tibDatas.getTibtitle());
+            ((ItemViewHolder) holder).txttibtitle.setText(filtertibData.get(position).getTibtitle());
             ((ItemViewHolder) holder).txttibtitle.setTypeface(typeface);
 
             ((ItemViewHolder) holder).linearLayout.setOnClickListener(new View.OnClickListener() {
@@ -98,7 +135,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
                     Intent intent = new Intent(context, TibPrayerDetailActivity.class);
                     intent.putExtra("type","tibetan");
-                    intent.putExtra("tibData", tibDatas);
+                    intent.putExtra("tibData", filtertibData.get(position));
                     context.startActivity(intent);
                 }
             });
@@ -116,7 +153,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 public void onClick(DialogInterface dialog, int which) {
                                     int prayer_count = 0;
                                     PechaDatabase pechaDatabase = new PechaDatabase(context);
-                                    Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, tibDatas.getTibId());
+                                    Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, filtertibData.get(position).getTibId());
                                     Log.d("Count Value", String.valueOf(cursor));
                                     try {
                                         if (cursor.moveToFirst()) {
@@ -134,22 +171,11 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     {
                                         cursor.close();
                                     }
-
-
-
-
-
                                     String langtype="tibetan";
 
-                                    String body =tibDatas.getTibbody();
-                                    Log.d(TAG,"body="+ body);
-                                    int prayer_id=tibDatas.getTibId();
-                                    String title =tibDatas.getTibtitle();
-                                    Log.d(TAG,"Title="+title);
-                                    Log.d(TAG,"prayer id="+prayer_id);
-                                    Log.d(TAG,"count ="+prayer_count);
-                                    Log.d(TAG,"LANG="+langtype);
-
+                                    String body =filtertibData.get(position).getTibbody();
+                                    int prayer_id=filtertibData.get(position).getTibId();
+                                    String title =filtertibData.get(position).getTibtitle();
                                     long value = pechaDatabase.AddMyPrayerData(pechaDatabase,title,body,langtype,prayer_id,prayer_count);
                                     Cursor curs = pechaDatabase.getAllMyPrayerData(pechaDatabase);
                                     String vaa = DatabaseUtils.dumpCursorToString(curs);
@@ -183,7 +209,7 @@ public class TibetanAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return tibData.size();
+        return filtertibData.size();
     }
 
     @Override

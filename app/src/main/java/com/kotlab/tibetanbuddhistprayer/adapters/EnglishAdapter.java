@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,12 +29,50 @@ import java.util.ArrayList;
  * Created by topjor on 11/28/2017.
  */
 
-public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements Filterable{
     private static final String TAG ="EnglishAdapter" ;
     private ArrayList<EnglishData> englishData;
+    private ArrayList<EnglishData> filtereddata;
     private Context context;
     private static final int TYPE_HEADER=0;
     private static final int TYPE_ITEM=1;
+
+    @Override
+    public Filter getFilter() {
+
+        return new Filter() {
+            @Override
+            protected FilterResults performFiltering(CharSequence constraint) {
+                String charString = constraint.toString();
+                if(charString.isEmpty()){
+                    filtereddata = englishData;
+
+                }else {
+                    Log.d("filter",charString);
+                    ArrayList<EnglishData> datafilter = new ArrayList<>();
+                    EnglishData enda = new EnglishData("INDEX","this is body",0);
+                    datafilter.add(enda);
+                    for(EnglishData engData : englishData){
+                        if(engData.getTitle().toLowerCase().contains(charString.toLowerCase())){
+                            datafilter.add(engData);
+                        }
+                    }
+                    filtereddata =datafilter;
+                }
+
+                FilterResults filterResults = new FilterResults();
+                filterResults.values = filtereddata;
+                return filterResults;
+
+            }
+
+            @Override
+            protected void publishResults(CharSequence constraint, FilterResults results) {
+            filtereddata = (ArrayList<EnglishData>) results.values;
+            notifyDataSetChanged();
+            }
+        };
+    }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder{
         public TextView entvtitle;
@@ -57,6 +97,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     public EnglishAdapter(ArrayList<EnglishData> englishData, Context context) {
         this.englishData =englishData;
+        this.filtereddata = englishData;
         this.context = context;
     }
 
@@ -77,7 +118,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     @Override
-    public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
+    public void onBindViewHolder(RecyclerView.ViewHolder holder, final int position) {
 
         if (holder instanceof HeaderViewHolder){
 
@@ -85,15 +126,13 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
         }else if(holder instanceof ItemViewHolder){
 
-            final EnglishData enData = englishData.get(position);
-
-            ((ItemViewHolder) holder).entvtitle.setText(enData.getTitle());
+            ((ItemViewHolder) holder).entvtitle.setText(filtereddata.get(position).getTitle());
             ((ItemViewHolder) holder).itemlayout.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
                     Intent intent  = new Intent(context,enPrayerDetailActivity.class);
-                    intent.putExtra("enData",enData);
+                    intent.putExtra("enData",filtereddata.get(position));
                     context.startActivity(intent);
                 }
             });
@@ -109,7 +148,7 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                 public void onClick(DialogInterface dialog, int which) {
                                     int prayer_count = 0;
                                     PechaDatabase pechaDatabase = new PechaDatabase(context);
-                                    Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, enData.getId());
+                                    Cursor cursor = pechaDatabase.getTotalReadCount(pechaDatabase, filtereddata.get(position).getId());
                                     Log.d("Count Value", String.valueOf(cursor));
                                     try {
                                         if (cursor.moveToFirst()) {
@@ -129,14 +168,9 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     }
 
                                     String langtype="english";
-                                    String body =enData.getBody();
-                                    Log.d(TAG,"body="+ body);
-                                    int prayer_id=enData.getId();
-                                    String title =enData.getTitle();
-                                    Log.d(TAG,"Title="+title);
-                                    Log.d(TAG,"prayer id="+prayer_id);
-                                    Log.d(TAG,"count ="+prayer_count);
-                                    Log.d(TAG,"LANG="+langtype);
+                                    String body =filtereddata.get(position).getBody();
+                                    int prayer_id=filtereddata.get(position).getId();
+                                    String title =filtereddata.get(position).getTitle();
 
                                     long value = pechaDatabase.AddMyPrayerData(pechaDatabase,title,body,langtype,prayer_id,prayer_count);
                                     Cursor curs = pechaDatabase.getAllMyPrayerData(pechaDatabase);
@@ -147,7 +181,6 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                                     }else {
                                         showMessage("successfully entered");
                                     }
-
                                 }
                             })
                             .setNegativeButton("No", new DialogInterface.OnClickListener() {
@@ -160,8 +193,6 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
                 }
             });
         }
-
-
     }
 
     private void showMessage(String s) {
@@ -171,14 +202,13 @@ public class EnglishAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
 
     @Override
     public int getItemCount() {
-        return englishData.size();
+        return filtereddata.size();
     }
 
     @Override
     public int getItemViewType(int position) {
         if(isPositionHeader(position))
         {
-
             return TYPE_HEADER;
         }else {
             return TYPE_ITEM;

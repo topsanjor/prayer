@@ -45,5 +45,7 @@
     <string name="addtomyprayer">Add to My Prayer</string>
     <string name="menusharetxt">Share Prayer</string>
     <string name="action_search">Search</string>
+    <string name="tibqueryhint">འཚོལ་ཞིབ་</string>
+    <string name="poweredbytext">Powered by Kotlab</string>
 
 </resources>

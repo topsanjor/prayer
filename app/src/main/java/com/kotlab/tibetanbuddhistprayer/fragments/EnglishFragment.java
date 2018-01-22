@@ -6,10 +6,15 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.kotlab.tibetanbuddhistprayer.R;
 import com.kotlab.tibetanbuddhistprayer.adapters.EnglishAdapter;
@@ -32,20 +37,43 @@ public class EnglishFragment extends Fragment {
     private LinearLayoutManager linearLayoutManager;
     private ArrayList<EnglishData> englishDatas = new ArrayList<>();
     private EnglishAdapter enAdapter;
-
+    private View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        final View view = inflater.inflate(R.layout.fragment_english, container, false);
-        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        view = inflater.inflate(R.layout.fragment_english, container, false);
         context = getContext();
-        init(view);
+        initView(view);
         parseXMLData();
         return view;
 
     }
 
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.main,menu);
+        MenuItem menuItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) menuItem.getActionView();
+        searchView.setQueryHint("Search..");
+        search(searchView);
+    }
+
+    private void search(SearchView searchView) {
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                enAdapter.getFilter().filter(newText);
+                return true;
+            }
+        });
+    }
 
     public String readXML() {
         String line;
@@ -77,7 +105,7 @@ public class EnglishFragment extends Fragment {
 
         try {
             NodeList nodeList = document.getElementsByTagName(Constansts.KEY_ITEM);
-            EnglishData englishDat = new EnglishData("blabla", "bbod", 0);
+            EnglishData englishDat = new EnglishData("INDEX", "bbod", 0);
             englishDatas.add(englishDat);
             for (int i = 0; i < nodeList.getLength(); i++) {
                 //HashMap<String,String> map = new HashMap<String, String>();
@@ -102,7 +130,7 @@ public class EnglishFragment extends Fragment {
     }
 
 
-    private void init(View view) {
+    private void initView(View view) {
 
         recycler = (RecyclerView) view.findViewById(R.id.recycler);
         enAdapter = new EnglishAdapter(englishDatas, context);
